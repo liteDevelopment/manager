@@ -3,6 +3,9 @@ server:
   port: 80
   servlet:
     context-path: /manager
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 spring:
   datasource:
@@ -10,6 +13,14 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/noah?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimezone=UTC
     username: root
     password: huawei
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    prefix: classpath:/templates/
+    suffix: .html
 
 
 mybatis-plus:

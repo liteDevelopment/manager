@@ -17,6 +17,11 @@ public class TestController {
     @Resource
     private UserService userService;
 
+    @RequestMapping("/hello")
+    public String hello() {
+        return "hello";
+    }
+
     @RequestMapping("/getData")
     @ResponseBody
     public Object getData(String id) {
