@@ -1,5 +1,6 @@
 package com.handsome.manager.controller;
 
+import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.ao.TestAO;
 import com.handsome.manager.model.User;
 import com.handsome.manager.service.UserService;
@@ -12,26 +13,20 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/")
+public class LoginController {
 
     @Resource
     private UserService userService;
 
-    @RequestMapping("/hello")
-    public String hello() {
-        return "hello";
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
     }
 
-    @RequestMapping("/getData")
+    @RequestMapping("/doLogin")
     @ResponseBody
-    public Object getData(String id) {
-        TestAO test = new TestAO();
-        test.setName("lijia");
-        test.setAge(27);
-        test.setAddress("北京");
-        List<User> users = userService.selectList(null);
-        User user = userService.getById(id);
-        return user;
+    public Object doLogin(String loginName, String passWord) {
+        return new ServiceResault(1, "登录成功");
     }
 }
