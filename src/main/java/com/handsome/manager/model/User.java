@@ -8,9 +8,9 @@ import java.io.Serializable;
  * </p>
  *
  * @author handsome
- * @since 2020-05-01
+ * @since 2020-05-02
  */
-public class TEduSales implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -45,7 +45,7 @@ public class TEduSales implements Serializable {
 
     @Override
     public String toString() {
-        return "TEduSales{" +
+        return "User{" +
         ", id=" + id +
         ", name=" + name +
         ", code=" + code +

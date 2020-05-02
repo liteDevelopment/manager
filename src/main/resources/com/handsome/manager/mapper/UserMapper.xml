@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.handsome.manager.mapper.TEduSalesMapper">
-
-    <resultMap type="com.handsome.manager.model.TEduSales" id="TEduSales">
+<mapper namespace="com.handsome.manager.mapper.UserMapper">
+    <resultMap type="com.handsome.manager.model.User" id="UserMap">
         <!-- property值为实体类属性，column值为数据库表字段 -->
         <id property="id" column="id" />
         <result property="name" column="name"/>
         <result property="code" column="code"/>
     </resultMap>
 
-    <select id="getCustomerData" resultMap="TEduSales">
+    <select id="getCustomerData" resultMap="UserMap">
         select * from t_edu_sales where id=#{id}
     </select>
-
 </mapper>

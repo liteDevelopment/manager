@@ -1,7 +1,7 @@
 package com.handsome.manager;
 
-import com.handsome.manager.model.TEduSales;
-import com.handsome.manager.service.TEduSalesService;
+import com.handsome.manager.model.User;
+import com.handsome.manager.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,12 +15,12 @@ import java.util.List;
 public class ManagerApplicationTests {
 
 	@Resource
-	private TEduSalesService tEduSalesService;
+	private UserService userService;
 
 	@Test
 	public void contextLoads() {
 		// 所有用户
-		List<TEduSales> users = tEduSalesService.selectList(null);
+		List<User> users = userService.selectList(null);
 		System.out.println(users);
 	}
 

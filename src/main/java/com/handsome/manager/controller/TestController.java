@@ -1,8 +1,8 @@
 package com.handsome.manager.controller;
 
 import com.handsome.manager.ao.TestAO;
-import com.handsome.manager.model.TEduSales;
-import com.handsome.manager.service.TEduSalesService;
+import com.handsome.manager.model.User;
+import com.handsome.manager.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +15,7 @@ import java.util.List;
 public class TestController {
 
     @Resource
-    private TEduSalesService eduSalesService;
+    private UserService userService;
 
     @RequestMapping("/getData")
     @ResponseBody
@@ -24,8 +24,8 @@ public class TestController {
         test.setName("lijia");
         test.setAge(27);
         test.setAddress("北京");
-        List< TEduSales > users = eduSalesService.selectList(null);
-        TEduSales user = eduSalesService.getById(id);
+        List<User> users = userService.selectList(null);
+        User user = userService.getById(id);
         return user;
     }
 }
