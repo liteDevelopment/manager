@@ -24,6 +24,12 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/logout")
+    @ResponseBody
+    public Object logout() {
+        return new ServiceResault(1, "登出成功");
+    }
+
     @RequestMapping("/doLogin")
     @ResponseBody
     public Object doLogin(String loginName, String passWord) {
