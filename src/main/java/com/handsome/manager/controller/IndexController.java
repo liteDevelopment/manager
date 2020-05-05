@@ -11,4 +11,14 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping("/userManage")
+    public String userManage() {
+        return "user/userManage";
+    }
+
+    @RequestMapping("/userInfo")
+    public String userInfo() {
+        return "user/userInfo";
+    }
 }
