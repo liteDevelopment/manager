@@ -25,9 +25,8 @@ public class LoginController {
     }
 
     @RequestMapping("/logout")
-    @ResponseBody
-    public Object logout() {
-        return new ServiceResault(1, "登出成功");
+    public String logout() {
+        return "login";
     }
 
     @RequestMapping("/doLogin")

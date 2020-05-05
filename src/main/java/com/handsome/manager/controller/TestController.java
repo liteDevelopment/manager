@@ -4,6 +4,7 @@ import com.handsome.manager.ao.TestAO;
 import com.handsome.manager.model.User;
 import com.handsome.manager.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,8 @@ public class TestController {
     private UserService userService;
 
     @RequestMapping("/hello")
-    public String hello() {
+    public String hello(Model model) {
+        model.addAttribute("msg", "欢迎！");
         return "hello";
     }
 
