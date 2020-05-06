@@ -1,4 +1,4 @@
-package com.handsome.manager.syatem;
+package com.handsome.manager.system;
 
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;

@@ -1,4 +1,4 @@
-package com.handsome.manager.syatem;
+package com.handsome.manager.system;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;

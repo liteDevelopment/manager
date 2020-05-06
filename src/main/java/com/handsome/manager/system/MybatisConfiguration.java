@@ -1,4 +1,4 @@
-package com.handsome.manager.syatem;
+package com.handsome.manager.system;
 
 import com.baomidou.mybatisplus.spring.boot.starter.ConfigurationCustomizer;
 import org.apache.ibatis.type.JdbcType;

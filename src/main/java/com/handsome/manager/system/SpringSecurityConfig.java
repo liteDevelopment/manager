@@ -1,4 +1,4 @@
-package com.handsome.manager.syatem;
+package com.handsome.manager.system;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
