@@ -19,17 +19,22 @@ $(function () {
                  dataSrc: "data",
                  dataType:'json',
                  data: {
-
+                    "id": 1,
+                     "name": "name",
+                     "code": "code"
+                 },
+                 beforeSend: function () {
+                         // 禁用按钮防止重复提交，发送前响应
+                         //$("#submit").attr({ disabled: "disabled" });
+                    $("#submsg").html("请稍后...");
                  }
             },
             columns: [//对应上面thead里面的序列
                 {"data": "null"},
                 {"data": "id"},
-                {"data": 'loginName'},
-                {"data": 'name'},
-                {"data": 'phone'},
-                {"data": 'createTime'},
-                {"data":'columnDefs'}
+                {"data": "name"},
+                {"data": "code"},
+                {"data": "columnDefs"}
             ],
             //操作按钮
             columnDefs: [
@@ -46,16 +51,16 @@ $(function () {
                 lengthMenu: "",
                 processing: "",
                 paginate: {
-                    previous: "<",
-                    next: ">",
-                    first: "<<",
-                    last: ">>"
+                    first: "首页 ",
+                    previous: " 前一页 ",
+                    next: " 下一页 ",
+                    last: " 末页"
                 },
-                zeroRecords: "",
-                info: "",
+                zeroRecords: "未找到相关数据",
+                info: "第_PAGE_页,共_PAGES_页",
                 infoEmpty: "",
                 infoFiltered: "",
-                sSearch: "",
+                sSearch: "搜索:",
             },
             //在每次table被draw完后回调函数
             fnDrawCallback: function () {
@@ -111,9 +116,8 @@ $(function () {
     //修改
     $("#dataTable tbody").on("click", "#editRow", function () {
             var data = tables.api().row($(this).parents("tr")).data();
-            $("input[name=typeId]").val(data.typeIdStr);
-            $("input[name=typeNameCn]").val(data.typeNameCn);
-            $("input[name=typeNameEn]").val(data.typeNameEn);
+            $("input[name=typeId]").val(data.id);
+            $("input[name=typeNameCn]").val(data.name);
 
             url = "";
 
