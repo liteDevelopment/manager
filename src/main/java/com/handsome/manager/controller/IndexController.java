@@ -34,4 +34,20 @@ public class IndexController {
         model.addAttribute("jsPaths", new ArrayList<String>());
         return "common";
     }
+
+    @RequestMapping("/customerManage")
+    public String customerManage(Model model) {
+        model.addAttribute("contentPage", "customer/customerManage");
+        model.addAttribute("jsPaths", "/js/customer/customerManage.js");
+        return "common";
+    }
+
+
+    @RequestMapping("/productManage")
+    public String productManage(Model model) {
+        model.addAttribute("contentPage", "product/productManage");
+        model.addAttribute("jsPaths", "/js/product/productManage.js");
+        return "common";
+    }
+
 }
