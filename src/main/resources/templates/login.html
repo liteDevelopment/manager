@@ -10,9 +10,9 @@
     <script src="/manager/bootstrap/js/bootstrap.min.js"></script>
     <script src="/manager/bootstrap/js/bootstrapValidator.js"></script>
     <script language="javascript">
-      if (top != window)
-      top.location.href = window.location.href;
-  	</script>
+        if (top != window)
+            top.location.href = window.location.href;
+    </script>
     <title>登录</title>
 </head>
 <body class="hold-transition login-page">
@@ -22,13 +22,13 @@
     </div>
     <div class="login-box-body">
         <p class="login-box-msg">登录</p>
-        <form id="form_login" action="" method="post">
+        <form id="form_login" action="/manager/login" method="post">
             <div class="form-group has-feedback">
-                <input name="jg_login_user" type="text" class="form-control" id="userName" placeholder="您的用户名">
+                <input name="username" type="text" class="form-control" id="username" placeholder="您的用户名">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input name="jg_login_pwd" type="password" class="form-control" id="password" placeholder="密码">
+                <input name="password" type="password" class="form-control" id="password" placeholder="密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <!--<div class="form-group">
@@ -62,9 +62,8 @@
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
 </body>
-</html>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         //登录表单验证
         $('#form_login').bootstrapValidator({
             message: '提交数据不能全为空',
@@ -85,7 +84,7 @@
                         },
                         regexp: {
                             /* 只需加此键值对，包含正则表达式，和提示 */
-                            regexp: /[a-zA-Z0-9_]{2,16}/ ,
+                            regexp: /[a-zA-Z0-9_]{2,16}/,
                             message: '请正确输入您的用户名'
                         }
                     }
@@ -104,23 +103,16 @@
                     }
                 }
             } //验证内容
-        }).on('success.form.bv', function (e) {
-            e.preventDefault();
-            var $form = $(e.target);
-            var bv = $form.data('bootstrapValidator');
-            //这里提交表单
-            $.post('/manager/doLogin', {
-            		loginName: $("#userName").val(),
-            		passWord: $("#password").val(),
-            		<!--validCode: $("#validCode").val(),-->
-            }, function (result) {
-            	if (result.code == 1) {
-            		window.location.href='/manager/pc/index';
-				}else{
-					alert(result.msg);
-				}
-            });
         });
+
+    // , function (result) {
+    //         if (result.code == 1) {
+    //             window.location.href = '/manager/index';
+    //         } else {
+    //             alert(result.msg);
+    //         }
+    //     }
+
 
         //验证图片点击后重新获取验证码
         //$("#img_verify").on("click", function () {
@@ -128,3 +120,4 @@
         //});
     })
 </script>
+</html>

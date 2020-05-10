@@ -10,14 +10,12 @@ import java.io.Serializable;
  * @author handsome
  * @since 2020-05-03
  */
-public class User implements Serializable {
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Integer id;
     private String name;
-    private String password;
-    private String phone;
 
 
     public Integer getId() {
@@ -36,29 +34,11 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     @Override
     public String toString() {
-        return "User{" +
+        return "Role{" +
         ", id=" + id +
         ", name=" + name +
-        ", password=" + password +
-        ", phone=" + phone +
         "}";
     }
 }

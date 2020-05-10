@@ -3,12 +3,13 @@
 <mapper namespace="com.handsome.manager.mapper.UserMapper">
     <resultMap type="com.handsome.manager.model.User" id="UserMap">
         <!-- property值为实体类属性，column值为数据库表字段 -->
-        <id property="id" column="id" />
+        <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="code" column="code"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
     </resultMap>
 
     <select id="getCustomerData" resultMap="UserMap">
-        select * from t_edu_sales where id=#{id}
+        select * from user where id=#{id}
     </select>
 </mapper>

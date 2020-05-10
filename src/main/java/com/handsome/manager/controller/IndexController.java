@@ -1,5 +1,6 @@
 package com.handsome.manager.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,9 @@ public class IndexController {
 
     @RequestMapping("/index")
     public String index(Model model) {
+        // 获取用户信息
+        org.springframework.security.core.userdetails.User myUserDetails= (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+        model.addAttribute("userName", myUserDetails.getUsername());
         model.addAttribute("contentPage", "index");
         model.addAttribute("jsPaths", new ArrayList<String>());
         return "common";
