@@ -1,6 +1,7 @@
 package com.handsome.manager.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.mapper.UserMapper;
 import com.handsome.manager.model.User;
 import com.handsome.manager.service.UserService;
@@ -29,5 +30,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User selectByName(String name) {
         return userMapper.selectByName(name);
+    }
+
+    @Override
+    public ServiceResault queryUser(String userId) {
+        return null;
+    }
+
+    @Override
+    public ServiceResault addUser(User user) {
+        return null;
+    }
+
+    @Override
+    public ServiceResault updateUser(User user) {
+        return null;
+    }
+
+    @Override
+    public ServiceResault delUser(String userId) {
+        return null;
     }
 }

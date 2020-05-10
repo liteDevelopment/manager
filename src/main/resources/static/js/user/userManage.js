@@ -80,10 +80,9 @@ $(function () {
 
     //添加
     $("#btn-add").on("click", function () {
-            url = "";
-            $("input[name=typeId]").val(0);
-            $("input[name=typeNameCn]").val("");
-            $("input[name=typeNameEn]").val("");
+            $("input[name=id]").val(null);
+            $("input[name=name]").val(null);
+            $("input[name=phone]").val(null);
             $("#editModal").modal("show");
         });
 
@@ -116,11 +115,9 @@ $(function () {
     //修改
     $("#dataTable tbody").on("click", "#editRow", function () {
             var data = tables.api().row($(this).parents("tr")).data();
-            $("input[name=typeId]").val(data.id);
-            $("input[name=typeNameCn]").val(data.name);
-
-            url = "";
-
+            $("input[name=id]").val(data.id);
+            $("input[name=name]").val(data.name);
+            $("input[name=phone]").val(data.phone);
             $("#editModal").modal("show");
         });
 
@@ -135,12 +132,11 @@ $(function () {
                     alert("Server Connection Error.");
                 },
                 success: function (data) {
-                    if (data.status == 1) {
+                    if (data.code == 1) {
                         $("#editModal").modal("hide");
-                        showSuccess("");
                         tables.fnDraw();
                     } else {
-                        alert("");
+                        alert(data.msg);
                     }
                 }
             });
@@ -157,10 +153,9 @@ $(function () {
                     cache: "false",
                     success: function (data) {
                         if (data.status == 1) {
-                            showSuccess();
                             tables.api().row().remove().draw(false);
                         } else {
-                            alert();
+                            alert(data.msg);
                         }
                     },
                     error: function (err) {

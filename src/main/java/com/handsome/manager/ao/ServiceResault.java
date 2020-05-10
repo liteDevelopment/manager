@@ -5,6 +5,9 @@ import java.util.Map;
 
 public class ServiceResault {
 
+    public ServiceResault() {
+
+    }
     public ServiceResault(Object data) {
         this.data = data;
     }
@@ -20,7 +23,7 @@ public class ServiceResault {
         this.msg = msg;
     }
 
-    private int code = 0;
+    private int code = 1;
 
     private String msg;
 

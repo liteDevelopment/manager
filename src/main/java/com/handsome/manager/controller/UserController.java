@@ -2,10 +2,13 @@ package com.handsome.manager.controller;
 
 
 import com.handsome.manager.ao.DatatablesResult;
+import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.ao.TestAO;
 import com.handsome.manager.model.User;
+import com.handsome.manager.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +31,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/pc/user")
 public class UserController {
+
+    @Resource
+    private UserService userService;
 
     @RequestMapping(value = "/dataGrid")
     public ResponseEntity<DatatablesResult> list(User user,
@@ -123,13 +130,20 @@ public class UserController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ResponseEntity<Void> delete(@RequestParam(value = "id") String id) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
+        //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        userService.delUser(id);
+        return ResponseEntity.ok(new ServiceResault());
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ResponseEntity<Void> save(User user) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    public ResponseEntity<ServiceResault> save(User user) {
+        if (StringUtils.isEmpty(user.getId())) {
+            userService.addUser(user);
+        } else {
+            userService.updateUser(user);
+        }
+        return ResponseEntity.ok(new ServiceResault());
     }
 }
 
