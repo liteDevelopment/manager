@@ -42,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/adminlte/**",
                         "/bootstrap/**",
-                        "/plugins/**"
+                        "/plugins/**",
+                        "/js/**"
                 ).permitAll() //默认不拦截静态资源的url pattern （2）.permitAll()
                 .anyRequest().authenticated()
                 .and()
