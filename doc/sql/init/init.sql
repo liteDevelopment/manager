@@ -9,6 +9,8 @@ CREATE TABLE `user`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+INSERT INTO noah.user (id, name, password, phone) VALUES (1, 'admin', '$2a$10$PlfalHVD2vSeVTn9ou5QsOKyXGKJJTvNIIwuBuxN6CZKPcwedh5ly', '13010001000');
+
 # 角色表
 CREATE TABLE `role`
 (

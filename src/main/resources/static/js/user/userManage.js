@@ -33,7 +33,7 @@ $(function () {
                 {"data": "null"},
                 {"data": "id"},
                 {"data": "name"},
-                {"data": "code"},
+                {"data": "phone"},
                 {"data": "columnDefs"}
             ],
             //操作按钮
@@ -128,11 +128,11 @@ $(function () {
             $.ajax({
                 cache: false,
                 type: "POST",
-                url: url,
+                url: "/manager/pc/user/save",
                 data: $("#editForm").serialize(),
                 async: false,
                 error: function (request) {
-                    showFail("Server Connection Error<%=request.getContextPath()%>.");
+                    alert("Server Connection Error.");
                 },
                 success: function (data) {
                     if (data.status == 1) {
@@ -140,7 +140,7 @@ $(function () {
                         showSuccess("");
                         tables.fnDraw();
                     } else {
-                        showFail("");
+                        alert("");
                     }
                 }
             });
@@ -160,11 +160,11 @@ $(function () {
                             showSuccess();
                             tables.api().row().remove().draw(false);
                         } else {
-                            showFail();
+                            alert();
                         }
                     },
                     error: function (err) {
-                        showFail("Server Connection Error<%=request.getContextPath()%>.");
+                        alert("Server Connection Error.");
                     }
                 });
             }
