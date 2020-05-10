@@ -40,6 +40,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // 如果有允许匿名的url，填在下面
                 .antMatchers("/login").permitAll()
+                .antMatchers("/adminlte/**",
+                        "/bootstrap/**",
+                        "/plugins/**"
+                ).permitAll() //默认不拦截静态资源的url pattern （2）.permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 设置登陆页
