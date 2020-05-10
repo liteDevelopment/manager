@@ -1,8 +1,9 @@
 package com.handsome.manager.system;
 
+import com.handsome.manager.ao.UserAccountAO;
 import com.handsome.manager.model.Role;
-import com.handsome.manager.model.User;
 import com.handsome.manager.model.UserRole;
+import com.handsome.manager.service.AccountService;
 import com.handsome.manager.service.RoleService;
 import com.handsome.manager.service.UserRoleService;
 import com.handsome.manager.service.UserService;
@@ -28,6 +29,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     @Resource
+    private AccountService accountService;
+
+    @Resource
     private RoleService roleService;
 
     @Resource
@@ -35,23 +39,23 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 通过账号查询
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        // 从数据库中取出用户信息
-        User user = userService.selectByName(username);
 
-        // 判断用户是否存在
-        if (user == null) {
-            throw new UsernameNotFoundException("用户名不存在");
+        UserAccountAO userAccountData = accountService.getUserAccountData(username);
+
+        if (null == userAccountData || null == userAccountData.getUserId()) {
+            throw new UsernameNotFoundException("用户不存在");
         }
 
         // 添加权限
-        List<UserRole> userRoles = userRoleService.listByUserId(String.valueOf(user.getId()));
+        List<UserRole> userRoles = userRoleService.listByUserId(String.valueOf(userAccountData.getUserId()));
         for (UserRole userRole : userRoles) {
             Role role = roleService.selectById(userRole.getRoleId());
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
 
         // 返回UserDetails实现类
-        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), authorities);
+        return new org.springframework.security.core.userdetails.User(userAccountData.getName(), userAccountData.getPassword(), authorities);
     }
 }

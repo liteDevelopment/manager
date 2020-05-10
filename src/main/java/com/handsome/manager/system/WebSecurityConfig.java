@@ -51,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login")
                 // 设置登陆成功页
                 .defaultSuccessUrl("/pc/index").permitAll()
+                .usernameParameter("phoneNum")
                 .and()
                 .logout().permitAll();
 
