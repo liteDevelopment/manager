@@ -1,6 +1,5 @@
 package com.handsome.manager.model;
 
-import java.math.BigDecimal;
 import java.io.Serializable;
 
 /**
@@ -24,19 +23,6 @@ public class SalesSlip implements Serializable {
      * 客户id
      */
     private Long customerId;
-    /**
-     * 产品id
-     */
-    private Long productId;
-    /**
-     * 产品数量
-     */
-    private BigDecimal num;
-    private BigDecimal percentage;
-    /**
-     * 佣金
-     */
-    private BigDecimal commission;
     /**
      * 有效性
      */
@@ -67,38 +53,6 @@ public class SalesSlip implements Serializable {
         this.customerId = customerId;
     }
 
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
-    public BigDecimal getNum() {
-        return num;
-    }
-
-    public void setNum(BigDecimal num) {
-        this.num = num;
-    }
-
-    public BigDecimal getPercentage() {
-        return percentage;
-    }
-
-    public void setPercentage(BigDecimal percentage) {
-        this.percentage = percentage;
-    }
-
-    public BigDecimal getCommission() {
-        return commission;
-    }
-
-    public void setCommission(BigDecimal commission) {
-        this.commission = commission;
-    }
-
     public Boolean getStatus() {
         return status;
     }
@@ -113,10 +67,6 @@ public class SalesSlip implements Serializable {
         ", id=" + id +
         ", userId=" + userId +
         ", customerId=" + customerId +
-        ", productId=" + productId +
-        ", num=" + num +
-        ", percentage=" + percentage +
-        ", commission=" + commission +
         ", status=" + status +
         "}";
     }

@@ -24,6 +24,7 @@ public class Product implements Serializable {
      * 产品价格
      */
     private BigDecimal price;
+    private Boolean status;
 
 
     public Long getId() {
@@ -50,12 +51,21 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
         ", id=" + id +
         ", name=" + name +
         ", price=" + price +
+        ", status=" + status +
         "}";
     }
 }

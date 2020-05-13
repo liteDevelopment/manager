@@ -13,7 +13,7 @@ public class Generator {
     public static void main(String[] args) {
         String packageName = "com.handsome.manager";
         boolean serviceNameStartWithI = false;//auth -> UserService, 设置成true: auth -> IUserService
-        generateByTables(serviceNameStartWithI, packageName, "handsome", "noah", "user", "product", "customer", "sales_slip");
+        generateByTables(serviceNameStartWithI, packageName, "handsome", "noah", "user", "product", "customer", "sales_slip", "sales_slip_detail");
 
         System.out.println("completed...");
     }
