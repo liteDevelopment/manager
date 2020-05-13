@@ -50,4 +50,10 @@ public class IndexController {
         return "common";
     }
 
+    @RequestMapping("/salesSlip")
+    public String salesSlip(Model model) {
+        model.addAttribute("contentPage", "salesslip/salesSlip");
+        model.addAttribute("jsPaths", "/js/salesslip/salesSlip.js");
+        return "common";
+    }
 }

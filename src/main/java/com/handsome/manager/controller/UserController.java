@@ -42,8 +42,8 @@ public class UserController {
                        @RequestParam(value = "length") String length) {
         int rows = Integer.parseInt(length);
         int page = (Integer.parseInt(start) / rows) + 1;
-        List<User> users = new ArrayList<User>();
-        if (1==page) {
+        List<User> users = userService.list(rows, page);
+        /*if (1==page) {
             User user1 = new User();
             user1.setName("陈澄1");
             user1.setPhone("111");
@@ -120,7 +120,7 @@ public class UserController {
             user15.setPhone("111");
             user15.setId(1);
             users.add(user15);
-        }
+        }*/
         DatatablesResult pageResult = new DatatablesResult<User>();
         pageResult.setData(users);
         pageResult.setDraw(draw);
