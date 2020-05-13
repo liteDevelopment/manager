@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author handsome
@@ -20,6 +20,8 @@ public class Account implements Serializable {
      * 1-手机号
      */
     private Integer type;
+
+    private Integer userId;
 
 
     public Integer getId() {
@@ -46,12 +48,21 @@ public class Account implements Serializable {
         this.type = type;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
-        ", id=" + id +
-        ", account=" + account +
-        ", type=" + type +
-        "}";
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", type=" + type +
+                ", userId=" + userId +
+                '}';
     }
 }

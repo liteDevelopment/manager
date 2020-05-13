@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.handsome.manager.mapper.AccountMapper">
+    <resultMap type="com.handsome.manager.ao.UserAccountAO" id="UserAccountMap">
+        <!-- property值为实体类属性，column值为数据库表字段 -->
+        <id property="userId" column="user_id"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="account" column="account"/>
+        <result property="password" column="password"/>
+    </resultMap>
 
+    <select id="getUserAccountData" resultMap="UserAccountMap">
+        select u.id as user_id, u.name as name, u.phone as phone, u.password as password, a.account as account
+         from account a LEFT JOIN user u ON a.user_id = u.id
+          where a.account=#{account}
+    </select>
 </mapper>
