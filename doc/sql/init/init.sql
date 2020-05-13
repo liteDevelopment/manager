@@ -58,6 +58,7 @@ CREATE TABLE `product` (
   `id` bigint(20) NOT NULL,
   `name` varchar(64) NOT NULL COMMENT '课程名称',
   `price` decimal(10,2) DEFAULT NULL COMMENT '产品价格',
+  `status` bit(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '产品表';
 
@@ -65,12 +66,19 @@ CREATE TABLE `sales_slip` (
   `id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL COMMENT '销售id',
   `customer_id` bigint(20) NOT NULL COMMENT '客户id',
-  `product_id` bigint(20) NOT NULL COMMENT '产品id',
-  `num` decimal(5,0) NOT NULL COMMENT '产品数量',
-  `percentage` decimal(5,0) DEFAULT NULL,
-  `commission` decimal(5,0) DEFAULT NULL COMMENT '佣金',
   `status` bit(1) DEFAULT NULL COMMENT '有效性',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `idx_salesslip_userid` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '销售单表';
 
-
+CREATE TABLE `sales_slip_detail` (
+  `id` bigint(20) NOT NULL,
+  `sales_slip_id` bigint(20) DEFAULT NULL,
+  `product_id` bigint(20) DEFAULT NULL COMMENT '产品id',
+  `num` decimal(5,0) DEFAULT NULL COMMENT '产品数量',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '单价',
+  `percentage` decimal(5,2) DEFAULT NULL COMMENT '提成比例',
+  `commission` decimal(5,2) DEFAULT NULL COMMENT '佣金',
+  PRIMARY KEY (`id`),
+  KEY `idx_salesslipdetail_salesslipid` (`sales_slip_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '销售明细单表';

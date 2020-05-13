@@ -16,6 +16,7 @@ public class SalesSlipDetail implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+    private Long salesSlipId;
     /**
      * 产品id
      */
@@ -44,6 +45,14 @@ public class SalesSlipDetail implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getSalesSlipId() {
+        return salesSlipId;
+    }
+
+    public void setSalesSlipId(Long salesSlipId) {
+        this.salesSlipId = salesSlipId;
     }
 
     public Long getProductId() {
@@ -90,6 +99,7 @@ public class SalesSlipDetail implements Serializable {
     public String toString() {
         return "SalesSlipDetail{" +
         ", id=" + id +
+        ", salesSlipId=" + salesSlipId +
         ", productId=" + productId +
         ", num=" + num +
         ", price=" + price +
