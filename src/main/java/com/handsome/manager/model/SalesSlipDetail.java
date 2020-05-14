@@ -1,5 +1,8 @@
 package com.handsome.manager.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.math.BigDecimal;
 import java.io.Serializable;
 
@@ -15,11 +18,15 @@ public class SalesSlipDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
+
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long salesSlipId;
     /**
      * 产品id
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long productId;
     /**
      * 产品数量

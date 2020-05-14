@@ -1,5 +1,8 @@
 package com.handsome.manager.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.io.Serializable;
 
 /**
@@ -14,14 +17,17 @@ public class SalesSlip implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     /**
      * 销售id
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long userId;
     /**
      * 客户id
      */
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long customerId;
     /**
      * 有效性
