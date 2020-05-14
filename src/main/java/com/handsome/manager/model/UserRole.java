@@ -1,5 +1,8 @@
 package com.handsome.manager.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.io.Serializable;
 
 /**
@@ -14,8 +17,11 @@ public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonSerialize(using = ToStringSerializer.class)
     private Integer id;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Integer userId;
+    @JsonSerialize(using = ToStringSerializer.class)
     private Integer roleId;
 
 

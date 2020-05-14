@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
+import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
@@ -13,7 +15,9 @@ public class Generator {
     public static void main(String[] args) {
         String packageName = "com.handsome.manager";
         boolean serviceNameStartWithI = false;//auth -> UserService, 设置成true: auth -> IUserService
-        generateByTables(serviceNameStartWithI, packageName, "handsome", "noah", "user", "product", "customer", "sales_slip", "sales_slip_detail");
+        generateByTables(serviceNameStartWithI, packageName, "handsome", "noah",
+                "user", "account", "role", "user_role",
+                "product", "customer", "sales_slip", "sales_slip_detail");
 
         System.out.println("completed...");
     }
@@ -33,7 +37,19 @@ public class Generator {
                 .setUrl(dbUrl)
                 .setUsername("root")
                 .setPassword("huawei")
-                .setDriverName("com.mysql.jdbc.Driver");
+                .setDriverName("com.mysql.jdbc.Driver")
+                /*.setTypeConvert(new MySqlTypeConvert() {
+                    @Override
+                    public DbColumnType processTypeConvert(String fieldType) {
+                        if ( fieldType.toLowerCase().contains( "bigint" ) ) {
+                            return DbColumnType.STRING;
+                        }
+                        if ( fieldType.toLowerCase().contains( "int" ) ) {
+                            return DbColumnType.STRING;
+                        }
+                        return (DbColumnType) super.processTypeConvert(fieldType);
+                    }})*/
+        ;
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig
                 .setCapitalMode(true)
