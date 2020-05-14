@@ -13,8 +13,8 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2020-05-13
  */
 public interface SalesSlipService extends IService<SalesSlip> {
-    ServiceResault querySalesSlip(String userId);
-    ServiceResault addSalesSlip(SalesSlip product);
-    ServiceResault updateSalesSlip(SalesSlip product);
-    ServiceResault delSalesSlip(String customerId);
+    ServiceResault query(String id);
+    ServiceResault add(SalesSlip product);
+    ServiceResault update(SalesSlip product);
+    ServiceResault del(String id);
 }

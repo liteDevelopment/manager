@@ -19,22 +19,22 @@ import org.springframework.stereotype.Service;
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements CustomerService {
 
     @Override
-    public ServiceResault queryCustomer(String userId) {
+    public ServiceResault query(String id) {
         return null;
     }
 
     @Override
-    public ServiceResault addCustomer(Customer customer) {
+    public ServiceResault add(Customer customer) {
         return null;
     }
 
     @Override
-    public ServiceResault updateCustomer(Customer customer) {
+    public ServiceResault update(Customer customer) {
         return null;
     }
 
     @Override
-    public ServiceResault delCustomer(String customerId) {
+    public ServiceResault del(String id) {
         return null;
     }
 }

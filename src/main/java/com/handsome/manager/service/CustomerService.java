@@ -15,8 +15,8 @@ import com.baomidou.mybatisplus.service.IService;
 public interface CustomerService extends IService<Customer> {
 
 
-    ServiceResault queryCustomer(String userId);
-    ServiceResault addCustomer(Customer customer);
-    ServiceResault updateCustomer(Customer customer);
-    ServiceResault delCustomer(String customerId);
+    ServiceResault query(String id);
+    ServiceResault add(Customer customer);
+    ServiceResault update(Customer customer);
+    ServiceResault del(String id);
 }

@@ -44,22 +44,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public ServiceResault queryUser(String userId) {
+    public ServiceResault query(String id) {
         return null;
     }
 
     @Override
-    public ServiceResault addUser(User user) {
+    public ServiceResault add(User user) {
         return null;
     }
 
     @Override
-    public ServiceResault updateUser(User user) {
+    public ServiceResault update(User user) {
         return null;
     }
 
     @Override
-    public ServiceResault delUser(String userId) {
+    public ServiceResault del(String id) {
         return null;
     }
 }

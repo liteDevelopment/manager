@@ -19,22 +19,22 @@ import org.springframework.stereotype.Service;
 public class SalesSlipServiceImpl extends ServiceImpl<SalesSlipMapper, SalesSlip> implements SalesSlipService {
 
     @Override
-    public ServiceResault querySalesSlip(String userId) {
+    public ServiceResault query(String id) {
         return null;
     }
 
     @Override
-    public ServiceResault addSalesSlip(SalesSlip product) {
+    public ServiceResault add(SalesSlip product) {
         return null;
     }
 
     @Override
-    public ServiceResault updateSalesSlip(SalesSlip product) {
+    public ServiceResault update(SalesSlip product) {
         return null;
     }
 
     @Override
-    public ServiceResault delSalesSlip(String customerId) {
+    public ServiceResault del(String id) {
         return null;
     }
 }

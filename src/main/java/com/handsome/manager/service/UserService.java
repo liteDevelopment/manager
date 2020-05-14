@@ -20,8 +20,8 @@ public interface UserService extends IService<User> {
     User selectByName(String name);
 
     List<User> list(int rows, int page);
-    ServiceResault queryUser(String userId);
-    ServiceResault addUser(User user);
-    ServiceResault updateUser(User user);
-    ServiceResault delUser(String userId);
+    ServiceResault query(String id);
+    ServiceResault add(User user);
+    ServiceResault update(User user);
+    ServiceResault del(String id);
 }

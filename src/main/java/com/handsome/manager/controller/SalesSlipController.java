@@ -50,16 +50,16 @@ public class SalesSlipController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
         //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        salesSlipService.delSalesSlip(id);
+        salesSlipService.del(id);
         return ResponseEntity.ok(new ServiceResault());
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> save(SalesSlip salesSlip) {
         if (StringUtils.isEmpty(salesSlip.getId())) {
-            salesSlipService.addSalesSlip(salesSlip);
+            salesSlipService.add(salesSlip);
         } else {
-            salesSlipService.updateSalesSlip(salesSlip);
+            salesSlipService.update(salesSlip);
         }
         return ResponseEntity.ok(new ServiceResault());
     }

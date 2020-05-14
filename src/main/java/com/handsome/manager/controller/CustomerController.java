@@ -51,16 +51,16 @@ public class CustomerController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
         //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        customerService.delCustomer(id);
+        customerService.del(id);
         return ResponseEntity.ok(new ServiceResault());
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> save(Customer user) {
         if (StringUtils.isEmpty(user.getId())) {
-            customerService.addCustomer(user);
+            customerService.add(user);
         } else {
-            customerService.addCustomer(user);
+            customerService.add(user);
         }
         return ResponseEntity.ok(new ServiceResault());
     }

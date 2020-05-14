@@ -40,7 +40,7 @@ public class ProductController {
                                                  @RequestParam(value = "length") String length) {
         int rows = Integer.parseInt(length);
         int page = (Integer.parseInt(start) / rows) + 1;
-        List<Product> users = new ArrayList<Product>();
+        List<Product> users = productService.list(rows, page);
         DatatablesResult pageResult = new DatatablesResult<Product>();
         pageResult.setData(users);
         pageResult.setDraw(draw);
@@ -49,19 +49,19 @@ public class ProductController {
         return ResponseEntity.ok(pageResult);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
         //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        productService.delProduct(id);
+        productService.del(id);
         return ResponseEntity.ok(new ServiceResault());
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> save(Product product) {
         if (StringUtils.isEmpty(product.getId())) {
-            productService.addProduct(product);
+            productService.add(product);
         } else {
-            productService.updateProduct(product);
+            productService.update(product);
         }
         return ResponseEntity.ok(new ServiceResault());
     }

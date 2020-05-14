@@ -132,16 +132,16 @@ public class UserController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
         //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        userService.delUser(id);
+        userService.del(id);
         return ResponseEntity.ok(new ServiceResault());
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> save(User user) {
         if (StringUtils.isEmpty(user.getId())) {
-            userService.addUser(user);
+            userService.add(user);
         } else {
-            userService.updateUser(user);
+            userService.update(user);
         }
         return ResponseEntity.ok(new ServiceResault());
     }
