@@ -16,6 +16,7 @@ import java.util.List;
  */
 public interface ProductService extends IService<Product> {
     List<Product> list(int rows, int page);
+    int count();
     ServiceResault query(String productId);
     ServiceResault add(Product product);
     ServiceResault update(Product product);

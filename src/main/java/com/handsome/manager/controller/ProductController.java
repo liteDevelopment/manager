@@ -44,7 +44,7 @@ public class ProductController {
         DatatablesResult pageResult = new DatatablesResult<Product>();
         pageResult.setData(users);
         pageResult.setDraw(draw);
-        pageResult.setRecordsTotal(20);
+        pageResult.setRecordsTotal(productService.count());
         pageResult.setRecordsFiltered(pageResult.getRecordsTotal());
         return ResponseEntity.ok(pageResult);
     }

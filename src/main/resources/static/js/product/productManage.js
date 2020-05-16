@@ -7,7 +7,7 @@ var str =  "<div class='btn-group'>" +
     var tables = $("#dataTable").dataTable({
             serverSide: true,//分页，取数据等等的都放到服务端去
             //processing: true,//载入数据的时候是否显示“载入中”
-            pageLength: 5,  //首次加载的数据条数
+            pageLength: 10,  //首次加载的数据条数
             ordering: false, //排序操作在服务端进行，所以可以关了。
             pagingType: "full_numbers",
             autoWidth: false,

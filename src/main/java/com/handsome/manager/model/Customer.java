@@ -31,12 +31,6 @@ public class Customer implements Serializable {
      * 是否在校 0 不在 1 在
      */
     private Boolean status;
-    /**
-     * 所选课程id
-     */
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long productId;
-
 
     public Long getId() {
         return id;
@@ -70,14 +64,6 @@ public class Customer implements Serializable {
         this.status = status;
     }
 
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +
@@ -85,7 +71,6 @@ public class Customer implements Serializable {
         ", name=" + name +
         ", contact=" + contact +
         ", status=" + status +
-        ", productId=" + productId +
         "}";
     }
 }

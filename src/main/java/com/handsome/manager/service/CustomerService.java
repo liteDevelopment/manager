@@ -4,6 +4,8 @@ import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.model.Customer;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -14,7 +16,8 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface CustomerService extends IService<Customer> {
 
-
+    List<Customer> list(int rows, int page);
+    int count();
     ServiceResault query(String id);
     ServiceResault add(Customer customer);
     ServiceResault update(Customer customer);

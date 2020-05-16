@@ -39,16 +39,16 @@ public class CustomerController {
                                                  @RequestParam(value = "length") String length) {
         int rows = Integer.parseInt(length);
         int page = (Integer.parseInt(start) / rows) + 1;
-        List<Customer> users = new ArrayList<Customer>();
+        List<Customer> users = customerService.list(rows, page);
         DatatablesResult pageResult = new DatatablesResult<Customer>();
         pageResult.setData(users);
         pageResult.setDraw(draw);
-        pageResult.setRecordsTotal(20);
+        pageResult.setRecordsTotal(customerService.count());
         pageResult.setRecordsFiltered(pageResult.getRecordsTotal());
         return ResponseEntity.ok(pageResult);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
         //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         customerService.del(id);

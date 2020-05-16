@@ -44,6 +44,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public int count() {
+        return 0;
+    }
+
+    @Override
     public ServiceResault query(String id) {
         return null;
     }

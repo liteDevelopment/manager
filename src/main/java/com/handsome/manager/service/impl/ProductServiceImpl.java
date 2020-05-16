@@ -37,6 +37,13 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
     }
 
     @Override
+    public int count() {
+        Wrapper<Product> productWrapper = new EntityWrapper<Product>();
+        productWrapper.eq("status", true);
+        return productMapper.selectCount(productWrapper);
+    }
+
+    @Override
     public ServiceResault query(String productId) {
         return null;
     }

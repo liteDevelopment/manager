@@ -38,16 +38,16 @@ public class SalesSlipController {
                                                  @RequestParam(value = "length") String length) {
         int rows = Integer.parseInt(length);
         int page = (Integer.parseInt(start) / rows) + 1;
-        List<SalesSlip> users = new ArrayList<SalesSlip>();
+        List<SalesSlip> users = salesSlipService.list(rows, page);
         DatatablesResult pageResult = new DatatablesResult<SalesSlip>();
         pageResult.setData(users);
         pageResult.setDraw(draw);
-        pageResult.setRecordsTotal(20);
+        pageResult.setRecordsTotal(salesSlipService.count());
         pageResult.setRecordsFiltered(pageResult.getRecordsTotal());
         return ResponseEntity.ok(pageResult);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
         //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         salesSlipService.del(id);

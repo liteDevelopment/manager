@@ -129,7 +129,7 @@ public class UserController {
         return ResponseEntity.ok(pageResult);
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
         //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         userService.del(id);
