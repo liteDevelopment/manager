@@ -3,6 +3,7 @@ package com.handsome.manager.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.handsome.manager.ao.SelectAO;
 import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.mapper.UserMapper;
 import com.handsome.manager.model.User;
@@ -71,5 +72,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public ServiceResault del(String id) {
         return null;
+    }
+
+    @Override
+    public ServiceResault select() {
+        List<SelectAO> select = userMapper.select();
+        return new ServiceResault(select);
     }
 }

@@ -3,6 +3,7 @@ package com.handsome.manager.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.handsome.manager.ao.SelectAO;
 import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.model.Customer;
 import com.handsome.manager.mapper.CustomerMapper;
@@ -78,5 +79,11 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
             e.printStackTrace();
         }
         return new ServiceResault();
+    }
+
+    @Override
+    public ServiceResault select() {
+        List<SelectAO> select = customerMapper.select();
+        return new ServiceResault(select);
     }
 }

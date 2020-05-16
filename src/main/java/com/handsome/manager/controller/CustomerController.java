@@ -64,5 +64,10 @@ public class CustomerController {
         }
         return ResponseEntity.ok(new ServiceResault());
     }
+
+    @RequestMapping(value = "/select")
+    public ResponseEntity<ServiceResault> select() {
+        return ResponseEntity.ok(customerService.select());
+    }
 }
 

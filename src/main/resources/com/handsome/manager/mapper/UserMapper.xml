@@ -12,4 +12,8 @@
     <select id="getCustomerData" resultMap="UserMap">
         select * from user where id=#{id}
     </select>
+
+    <select id="select" resultType="com.handsome.manager.ao.SelectAO">
+        select id as value, name as text from user;
+    </select>
 </mapper>

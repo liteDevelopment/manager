@@ -1,5 +1,5 @@
 $(function () {
-var str =  "<div class='btn-group'>" +
+    var str =  "<div class='btn-group'>" +
          "<button id='editRow' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'></i></button>" +
          "<button id='delRow' class='btn btn-primary btn-sm' type='button'><i class='fa fa-trash-o'></i></button>" +
          "</div>"
@@ -92,6 +92,8 @@ var str =  "<div class='btn-group'>" +
             $("input[name=code]").val(null);
             $("input[name=createTime]").val(null);
             $("#editModal").modal("show");
+            createSelect($("#userSelect"), "/manager/pc/user/select");
+            createSelect($("#customerSelect"), "/manager/pc/customer/select")
         });
 
     //批量删除
@@ -172,4 +174,25 @@ var str =  "<div class='btn-group'>" +
                 });
             }
         });
+
+    function createSelect(elSelect, url) {
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: "json",
+            cache: "false",
+            success: function (data) {
+                if (data.code == 1 && data.data) {
+                    for (i = 0; i < data.data.length; i++) {
+                        elSelect.append("<option value='"+data.data[i].value+"'>"+data.data[i].text+"</option>");
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (err) {
+                alert("Server Connection Error.");
+            }
+        });
+    }
 });

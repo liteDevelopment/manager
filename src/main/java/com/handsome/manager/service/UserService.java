@@ -25,4 +25,6 @@ public interface UserService extends IService<User> {
     ServiceResault add(User user);
     ServiceResault update(User user);
     ServiceResault del(String id);
+
+    ServiceResault select();
 }

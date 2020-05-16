@@ -22,4 +22,5 @@ public interface CustomerService extends IService<Customer> {
     ServiceResault add(Customer customer);
     ServiceResault update(Customer customer);
     ServiceResault del(String id);
+    ServiceResault select();
 }
