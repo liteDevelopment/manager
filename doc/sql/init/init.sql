@@ -70,8 +70,10 @@ CREATE TABLE `product` (
 drop table `sales_slip`;
 CREATE TABLE `sales_slip` (
   `id` bigint(20) NOT NULL,
+  `code` varchar(32) DEFAULT NULL COMMENT '单号',
   `user_id` bigint(20) NOT NULL COMMENT '销售id',
   `customer_id` bigint(20) NOT NULL COMMENT '客户id',
+  `create_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   `status` bit(1) DEFAULT b'1' COMMENT '有效性',
   PRIMARY KEY (`id`),
   KEY `idx_salesslip_userid` (`user_id`)
