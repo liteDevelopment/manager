@@ -2,6 +2,7 @@ package com.handsome.manager.controller;
 
 
 import com.handsome.manager.ao.DatatablesResult;
+import com.handsome.manager.ao.SalesSlipAO;
 import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.model.SalesSlip;
 import com.handsome.manager.service.SalesSlipService;
@@ -38,7 +39,7 @@ public class SalesSlipController {
                                                  @RequestParam(value = "length") String length) {
         int rows = Integer.parseInt(length);
         int page = (Integer.parseInt(start) / rows) + 1;
-        List<SalesSlip> users = salesSlipService.list(rows, page);
+        List<SalesSlipAO> users = salesSlipService.list(rows, page);
         DatatablesResult pageResult = new DatatablesResult<SalesSlip>();
         pageResult.setData(users);
         pageResult.setDraw(draw);

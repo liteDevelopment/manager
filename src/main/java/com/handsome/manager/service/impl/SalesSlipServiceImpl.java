@@ -3,6 +3,7 @@ package com.handsome.manager.service.impl;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.handsome.manager.ao.SalesSlipAO;
 import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.model.SalesSlip;
 import com.handsome.manager.mapper.SalesSlipMapper;
@@ -32,11 +33,12 @@ public class SalesSlipServiceImpl extends ServiceImpl<SalesSlipMapper, SalesSlip
     private SalesSlipMapper salesSlipMapper;
 
     @Override
-    public List<SalesSlip> list(int rows, int page) {
-        Wrapper<SalesSlip> salesSlipWrapper = new EntityWrapper<SalesSlip>();
-        salesSlipWrapper.eq("status", true);
+    public List<SalesSlipAO> list(int rows, int page) {
         Page p = new Page(page, rows);
-        List<SalesSlip> salesSlips = salesSlipMapper.selectPage(p, salesSlipWrapper);
+//        Wrapper<SalesSlip> salesSlipWrapper = new EntityWrapper<SalesSlip>();
+//        salesSlipWrapper.eq("status", true);
+//        List<SalesSlip> salesSlips = salesSlipMapper.selectPage(p, salesSlipWrapper);
+        List<SalesSlipAO> salesSlips = salesSlipMapper.getSalesSlips(p.getOffset(), p.getSize());
         return salesSlips;
     }
 

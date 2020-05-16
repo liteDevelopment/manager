@@ -33,6 +33,8 @@ var str =  "<div class='btn-group'>" +
                 {"data": "null"},
                 {"data": "id"},
                 {"data": "code"},
+                {"data": "userName"},
+                {"data": "customerName"},
                 {"data": "createTime"},
                 {"data": "columnDefs"}
             ],
