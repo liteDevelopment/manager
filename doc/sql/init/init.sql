@@ -55,7 +55,6 @@ CREATE TABLE `customer` (
   `name` varchar(32) NOT NULL COMMENT '学生姓名',
   `contact` varchar(24) DEFAULT NULL COMMENT '联系方式',
   `status` bit(1) DEFAULT b'1' COMMENT '是否在校 0 不在 1 在',
-  `product_id` bigint(20) DEFAULT NULL COMMENT '所选课程id',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '客户表';
 

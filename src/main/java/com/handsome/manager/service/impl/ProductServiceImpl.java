@@ -8,6 +8,8 @@ import com.handsome.manager.model.Product;
 import com.handsome.manager.mapper.ProductMapper;
 import com.handsome.manager.service.ProductService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +25,8 @@ import java.util.List;
  */
 @Service
 public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> implements ProductService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Resource
     private ProductMapper productMapper;

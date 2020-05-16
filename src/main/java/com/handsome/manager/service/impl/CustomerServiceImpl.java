@@ -6,9 +6,10 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.model.Customer;
 import com.handsome.manager.mapper.CustomerMapper;
-import com.handsome.manager.model.Product;
 import com.handsome.manager.service.CustomerService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -24,6 +25,8 @@ import java.util.List;
  */
 @Service
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements CustomerService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
     @Resource
     private CustomerMapper customerMapper;

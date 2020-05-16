@@ -19,6 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/manager/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="/manager/plugins/dataTables/jquery.dataTables.min.js"></script>
     <script src="/manager/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/manager/js/common/utils.js"></script>
 
     <script src="/manager/adminlte/js/adminlte.min.js"></script>
     <script th:each="cssPath,status:${jsPaths}" th:src="@{${cssPath}}"></script>
@@ -51,8 +52,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <img src="/manager/adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    学习使我快乐
-                                    <small>Member since Nov. 2020</small>
+                                    Alexander Pierce
+                                    <small>管理员</small>
                                 </p>
                             </li>
 
@@ -77,10 +78,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
-            <img src="/manager/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <a href="#" class="brand-link">
+            <img src="/manager/img/logo.png" alt="Logo" class="img-circle elevation-3"
+                 style="margin-left: .8rem;margin-right: .5rem;margin-top: -3px;max-height: 33px;width: auto">
+            <span class="brand-text font-weight-light">思铎计划</span>
         </a>
 
         <!-- Sidebar -->
@@ -175,7 +176,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="/manager/pc/salesSlip" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
                                 销售单

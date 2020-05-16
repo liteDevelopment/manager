@@ -7,6 +7,8 @@ import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.mapper.UserMapper;
 import com.handsome.manager.model.User;
 import com.handsome.manager.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,6 +24,9 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Resource
     private UserMapper userMapper;
 

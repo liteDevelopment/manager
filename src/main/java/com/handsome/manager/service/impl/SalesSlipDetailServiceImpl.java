@@ -4,6 +4,8 @@ import com.handsome.manager.model.SalesSlipDetail;
 import com.handsome.manager.mapper.SalesSlipDetailMapper;
 import com.handsome.manager.service.SalesSlipDetailService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SalesSlipDetailServiceImpl extends ServiceImpl<SalesSlipDetailMapper, SalesSlipDetail> implements SalesSlipDetailService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SalesSlipDetailServiceImpl.class);
 
 }
