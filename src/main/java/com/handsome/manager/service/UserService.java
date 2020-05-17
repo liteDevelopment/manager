@@ -1,6 +1,7 @@
 package com.handsome.manager.service;
 
 import com.handsome.manager.ao.ServiceResault;
+import com.handsome.manager.ao.UserAO;
 import com.handsome.manager.model.User;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -19,11 +20,11 @@ public interface UserService extends IService<User> {
 
     User selectByName(String name);
 
-    List<User> list(int rows, int page);
+    List<UserAO> list(int rows, int page);
     int count();
     ServiceResault query(String id);
-    ServiceResault add(User user);
-    ServiceResault update(User user);
+    ServiceResault add(UserAO user);
+    ServiceResault update(UserAO user);
     ServiceResault del(String id);
 
     ServiceResault select();

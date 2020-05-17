@@ -33,6 +33,7 @@ $(function () {
                 {"data": "null"},
                 {"data": "id"},
                 {"data": "name"},
+                {"data": "account"},
                 {"data": "phone"},
                 {"data": "columnDefs"}
             ],
@@ -82,6 +83,7 @@ $(function () {
     $("#btn-add").on("click", function () {
             $("input[name=id]").val(null);
             $("input[name=name]").val(null);
+            $("input[name=account]").val(null);
             $("input[name=phone]").val(null);
             $("#editModal").modal("show");
         });
@@ -117,6 +119,7 @@ $(function () {
             var data = tables.api().row($(this).parents("tr")).data();
             $("input[name=id]").val(data.id);
             $("input[name=name]").val(data.name);
+            $("input[name=account]").val(data.phone);
             $("input[name=phone]").val(data.phone);
             $("#editModal").modal("show");
         });

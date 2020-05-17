@@ -2,9 +2,11 @@ package com.handsome.manager.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.handsome.manager.ao.SelectAO;
 import com.handsome.manager.ao.ServiceResault;
+import com.handsome.manager.ao.UserAO;
 import com.handsome.manager.mapper.UserMapper;
 import com.handsome.manager.model.User;
 import com.handsome.manager.service.UserService;
@@ -42,16 +44,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public List<User> list(int rows, int page) {
-//        Wrapper<User> userWrapper = new EntityWrapper<>();
-//        () -> userWrapper.lambda().eq(User::getName, "小小");
-//        userMapper.selectList(userWrapper);
-        return null;
+    public List<UserAO> list(int rows, int page) {
+        Page p = new Page(page, rows);
+        List<UserAO> users = userMapper.getUsers(p.getOffset(), p.getSize());
+        return users;
     }
 
     @Override
     public int count() {
-        return 0;
+        Wrapper<User> userWrapper = new EntityWrapper<User>();
+        //salesSlipWrapper.eq("status", true);
+        return userMapper.selectCount(userWrapper);
     }
 
     @Override
@@ -60,12 +63,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public ServiceResault add(User user) {
+    public ServiceResault add(UserAO user) {
         return null;
     }
 
     @Override
-    public ServiceResault update(User user) {
+    public ServiceResault update(UserAO user) {
         return null;
     }
 
