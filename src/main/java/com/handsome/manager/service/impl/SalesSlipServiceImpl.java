@@ -51,7 +51,8 @@ public class SalesSlipServiceImpl extends ServiceImpl<SalesSlipMapper, SalesSlip
 
     @Override
     public ServiceResault query(String id) {
-        return null;
+        SalesSlip salesSlip = salesSlipMapper.selectById(id);
+        return new ServiceResault(salesSlip);
     }
 
     @Override

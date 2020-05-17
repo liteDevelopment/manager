@@ -8,7 +8,7 @@
         <result property="code" column="code"/>
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
-        <result property="customerId" column="customer"/>
+        <result property="customerId" column="customer_id"/>
         <result property="customerName" column="customer_name"/>
         <result property="createTime" column="create_time"/>
         <result property="status" column="status"/>

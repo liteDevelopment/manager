@@ -91,9 +91,9 @@ $(function () {
             $("input[name=id]").val(null);
             $("input[name=code]").val(null);
             $("input[name=createTime]").val(null);
-            $("#editModal").modal("show");
             createSelect($("#userSelect"), "/manager/pc/user/select");
-            createSelect($("#customerSelect"), "/manager/pc/customer/select")
+            createSelect($("#customerSelect"), "/manager/pc/customer/select");
+            $("#editModal").modal("show");
         });
 
     //批量删除
@@ -128,7 +128,27 @@ $(function () {
             $("input[name=id]").val(data.id);
             $("input[name=code]").val(data.code);
             $("input[name=createTime]").val(data.createTime);
-            $("#editModal").modal("show");
+
+            $.ajax({
+                cache: false,
+                type: "GET",
+                url: "/manager/pc/salesSlip/query",
+                data: {id: data.id},
+                async: false,
+                error: function (request) {
+                    alert("Server Connection Error.");
+                },
+                success: function (data) {
+                    if (data.code == 1) {
+                        createSelect($("#userSelect"), "/manager/pc/user/select", data.data.userId);
+                        createSelect($("#customerSelect"), "/manager/pc/customer/select", data.data.customerId)
+                        $("#editModal").modal("show");
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+
         });
 
     $("#btn-submit").on("click", function () {
@@ -175,7 +195,8 @@ $(function () {
             }
         });
 
-    function createSelect(elSelect, url) {
+    function createSelect(elSelect, url, id) {
+        elSelect.empty();
         $.ajax({
             url: url,
             type: 'get',
@@ -184,7 +205,11 @@ $(function () {
             success: function (data) {
                 if (data.code == 1 && data.data) {
                     for (i = 0; i < data.data.length; i++) {
-                        elSelect.append("<option value='"+data.data[i].value+"'>"+data.data[i].text+"</option>");
+                        if (id) {
+                            elSelect.append("<option value='"+data.data[i].value+"' "+ (data.data[i].value==id ? "selected" : "") + ">"+data.data[i].text+"</option>");
+                        } else {
+                            elSelect.append("<option value='"+data.data[i].value+"'>"+data.data[i].text+"</option>");
+                        }
                     }
                 } else {
                     alert(data.msg);

@@ -3,7 +3,7 @@
 <mapper namespace="com.handsome.manager.mapper.CustomerMapper">
 
     <select id="select" resultType="com.handsome.manager.ao.SelectAO">
-        select id as value, name as text from customer;
+        select id as value, name as text from customer where status=1;
     </select>
 
 </mapper>

@@ -64,5 +64,10 @@ public class SalesSlipController {
         }
         return ResponseEntity.ok(new ServiceResault());
     }
+
+    @RequestMapping(value = "/query", method = RequestMethod.GET)
+    public ResponseEntity<ServiceResault> query(String id) {
+        return ResponseEntity.ok(salesSlipService.query(id));
+    }
 }
 
