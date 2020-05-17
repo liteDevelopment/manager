@@ -88,6 +88,7 @@ CREATE TABLE `sales_slip_detail` (
   `price` decimal(10,2) DEFAULT NULL COMMENT '单价',
   `percentage` decimal(5,2) DEFAULT NULL COMMENT '提成比例',
   `commission` decimal(5,2) DEFAULT NULL COMMENT '佣金',
+  `cutoff_time` date DEFAULT NULL COMMENT '结算时间',
   PRIMARY KEY (`id`),
   KEY `idx_salesslipdetail_salesslipid` (`sales_slip_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '销售明细单表';

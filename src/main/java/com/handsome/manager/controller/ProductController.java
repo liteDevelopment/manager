@@ -65,5 +65,10 @@ public class ProductController {
         }
         return ResponseEntity.ok(new ServiceResault());
     }
+
+    @RequestMapping(value = "/select")
+    public ResponseEntity<ServiceResault> select() {
+        return ResponseEntity.ok(productService.select());
+    }
 }
 

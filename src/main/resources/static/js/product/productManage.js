@@ -1,7 +1,7 @@
 $(function () {
 var str =  "<div class='btn-group'>" +
-         "<button id='editRow' class='btn btn-primary btn-sm' type='button'><i class='fa fa-edit'></i></button>" +
-         "<button id='delRow' class='btn btn-primary btn-sm' type='button'><i class='fa fa-trash-o'></i></button>" +
+         "<button id='editRow' class='btn btn-primary btn-sm' type='button'><i class='fa'></i>编辑</button>" +
+         "<button id='delRow' class='btn btn-primary btn-sm' type='button'><i class='fa'></i>删除</button>" +
          "</div>"
     var url = "";
     var tables = $("#dataTable").dataTable({

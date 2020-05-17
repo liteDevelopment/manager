@@ -2,9 +2,11 @@ package com.handsome.manager.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -44,7 +46,11 @@ public class SalesSlipDetail implements Serializable {
      * 佣金
      */
     private BigDecimal commission;
-
+    /**
+     * 结算时间
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:MM:ss")
+    private Date cutoffTime;
 
     public Long getId() {
         return id;
@@ -102,16 +108,25 @@ public class SalesSlipDetail implements Serializable {
         this.commission = commission;
     }
 
+    public Date getCutoffTime() {
+        return cutoffTime;
+    }
+
+    public void setCutoffTime(Date cutoffTime) {
+        this.cutoffTime = cutoffTime;
+    }
+
     @Override
     public String toString() {
         return "SalesSlipDetail{" +
-        ", id=" + id +
-        ", salesSlipId=" + salesSlipId +
-        ", productId=" + productId +
-        ", num=" + num +
-        ", price=" + price +
-        ", percentage=" + percentage +
-        ", commission=" + commission +
-        "}";
+                ", id=" + id +
+                ", salesSlipId=" + salesSlipId +
+                ", productId=" + productId +
+                ", num=" + num +
+                ", price=" + price +
+                ", percentage=" + percentage +
+                ", commission=" + commission +
+                ", cutoffTime=" + cutoffTime +
+                "}";
     }
 }

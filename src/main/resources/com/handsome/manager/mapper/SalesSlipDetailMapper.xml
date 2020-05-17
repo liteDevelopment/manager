@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.handsome.manager.mapper.SalesSlipDetailMapper">
+    <resultMap type="com.handsome.manager.ao.SalesSlipDetailAO" id="SalesSlipDetailMap">
+        <!-- property值为实体类属性，column值为数据库表字段 -->
+        <id property="id" column="id"/>
+        <result property="salesSlipId" column="sales_slip_id"/>
+        <result property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="num" column="num"/>
+        <result property="price" column="price"/>
+        <result property="percentage" column="percentage"/>
+        <result property="commission" column="commission"/>
+        <result property="cutoffTime" column="cutoff_time"/>
+    </resultMap>
+
+    <select id="getSalesSlipDetails" resultMap="SalesSlipDetailMap">
+        SELECT ssd.*, p.name as product_name from sales_slip_detail ssd
+        LEFT JOIN product p on (p.id=ssd.product_id)
+        limit #{begin}, #{length}
+    </select>
 
 </mapper>
