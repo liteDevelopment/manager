@@ -8,10 +8,11 @@
         <result property="phone" column="phone"/>
         <result property="account" column="account"/>
         <result property="password" column="password"/>
+        <result property="roleId" column="role_id"/>
     </resultMap>
 
     <select id="getUserAccountData" resultMap="UserAccountMap">
-        select u.id as user_id, u.name as name, u.phone as phone, u.password as password, a.account as account
+        select u.id as user_id, u.role_id, u.name, u.phone, u.password, a.account
          from account a LEFT JOIN user u ON a.user_id = u.id
           where a.account=#{account}
     </select>

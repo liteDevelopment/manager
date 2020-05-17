@@ -56,4 +56,12 @@ public class IndexController {
         model.addAttribute("jsPaths", "/js/salesslip/salesSlip.js");
         return "common";
     }
+
+    @RequestMapping("/noPermission")
+    public String permission(Model model) {
+        model.addAttribute("msg", "无权限");
+        model.addAttribute("contentPage", "error");
+        model.addAttribute("jsPaths", new ArrayList<String>());
+        return "common";
+    }
 }

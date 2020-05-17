@@ -23,6 +23,7 @@ public class GlobalExceptionHandlerAdvice {
     @ExceptionHandler(Exception.class)
     public String handleException(Model model, Exception e) {
         log.error(e.getMessage(), e);
+        model.addAttribute("msg", "操作异常");
         model.addAttribute("contentPage", "error");
         model.addAttribute("jsPaths", new ArrayList<String>());
         return "common";
