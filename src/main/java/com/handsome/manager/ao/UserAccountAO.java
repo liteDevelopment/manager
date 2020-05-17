@@ -13,4 +13,5 @@ public class UserAccountAO {
     private String phone;
     private String account;
     private String password;
+    private Long roleId;
 }

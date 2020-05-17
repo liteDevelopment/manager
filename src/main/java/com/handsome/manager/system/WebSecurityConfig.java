@@ -45,7 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/plugins/**",
                         "/js/**",
                         "/img/**"
-                ).permitAll() //默认不拦截静态资源的url pattern （2）.permitAll()
+                ).permitAll() //默认不拦截静态资源的url pattern
+                .antMatchers("/pc/user/**", "/pc/userManage").hasRole("ADMIN")
+                .antMatchers("/pc/product/**", "/pc/productManage").access("hasRole('ADMIN') or hasRole('SALES')")
                 .anyRequest().authenticated()
                 .and()
                 // 设置登陆页
@@ -53,6 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 设置登陆成功页
                 .defaultSuccessUrl("/pc/index").permitAll()
                 .usernameParameter("phoneNum")
+                .and()
+                .exceptionHandling().accessDeniedPage("/pc/noPermission")
                 .and()
                 .logout().permitAll();
 
@@ -66,6 +70,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         // 设置拦截忽略文件夹，可以对静态资源放行
-        web.ignoring().antMatchers("/adminlte/**", "plugins/**", "/bootstrap/**","/js/**");
+        web.ignoring().antMatchers("/adminlte/**", "plugins/**", "/bootstrap/**","/js/**", "/img/**");
     }
 }
