@@ -73,10 +73,10 @@ var str =  "<div class='btn-group'>" +
             }
         });
 
-    //查询按钮
+/*    //查询按钮
     $("#btn-query").on("click", function () {
         tables.fnDraw();//查询后不需要保持分页状态，回首页
-    });
+    });*/
 
     //添加
     $("#btn-add").on("click", function () {
@@ -86,14 +86,14 @@ var str =  "<div class='btn-group'>" +
             $("#editModal").modal("show");
         });
 
-    //批量删除
+/*    //批量删除
     $("#btn-delAll").on("click", function () {
 
     });
 
     //导出
     $("#btn-export").on("click", function () {
-    });
+    });*/
 
     //刷新
     $("#btn-re").on("click", function () {
@@ -122,25 +122,28 @@ var str =  "<div class='btn-group'>" +
         });
 
     $("#btn-submit").on("click", function () {
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "/manager/pc/product/save",
-                data: $("#editForm").serialize(),
-                async: false,
-                error: function (request) {
-                    alert("Server Connection Error.");
-                },
-                success: function (data) {
-                    if (data.code == 1) {
-                        $("#editModal").modal("hide");
-                        tables.fnDraw();
-                    } else {
-                        alert(data.msg);
-                    }
+        //校验
+        if (!$("#name").val()) { alert("请填写名称"); return; }
+        if (!$("#price").val()) { alert("请填写单价"); return; }
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "/manager/pc/product/save",
+            data: $("#editForm").serialize(),
+            async: false,
+            error: function (request) {
+                alert("Server Connection Error.");
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    $("#editModal").modal("hide");
+                    tables.fnDraw();
+                } else {
+                    alert(data.msg);
                 }
-            });
+            }
         });
+    });
 
     //删除
     $("#dataTable tbody").on("click", "#delRow", function () {

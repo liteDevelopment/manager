@@ -84,10 +84,10 @@ $(function () {
             }
         });
 
-    //查询按钮
+/*    //查询按钮
     $("#btn-query").on("click", function () {
         tables.fnDraw();//查询后不需要保持分页状态，回首页
-    });
+    });*/
 
     //添加
     $("#btn-add").on("click", function () {
@@ -99,14 +99,14 @@ $(function () {
             $("#editModal").modal("show");
         });
 
-    //批量删除
+/*    //批量删除
     $("#btn-delAll").on("click", function () {
 
     });
 
     //导出
     $("#btn-export").on("click", function () {
-    });
+    });*/
 
     //刷新
     $("#btn-re").on("click", function () {
@@ -299,6 +299,11 @@ $(function () {
                 });
             }
         });
+
+    //刷新
+    $("#detail-btn-re").on("click", function () {
+        detailTables.fnDraw(false);//刷新保持分页状态
+    });
 
     //添加
     $("#detail-btn-add").on("click", function () {
