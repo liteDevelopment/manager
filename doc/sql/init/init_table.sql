@@ -75,16 +75,25 @@ CREATE TABLE `sales_slip`
 
 # 销售明细表
 drop table `sales_slip_detail`;
-CREATE TABLE `sales_slip_detail`
-(
-    `id`            bigint(20) NOT NULL,
-    `sales_slip_id` bigint(20)     DEFAULT NULL,
-    `product_id`    bigint(20)     DEFAULT NULL COMMENT '产品id',
-    `num`           decimal(5, 0)  DEFAULT NULL COMMENT '产品数量',
-    `price`         decimal(10, 2) DEFAULT NULL COMMENT '单价',
-    `percentage`    decimal(5, 2)  DEFAULT NULL COMMENT '提成比例',
-    `commission`    decimal(5, 2)  DEFAULT NULL COMMENT '佣金',
-    PRIMARY KEY (`id`),
-    KEY `idx_salesslipdetail_salesslipid` (`sales_slip_id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8 COMMENT '销售明细单表';
+CREATE TABLE `sales_slip_detail` (
+  `id` bigint(20) NOT NULL,
+  `sales_slip_id` bigint(20) DEFAULT NULL,
+  `product_id` bigint(20) DEFAULT NULL COMMENT '产品id',
+  `num` decimal(5,0) DEFAULT NULL COMMENT '产品数量',
+  `price` decimal(10,2) DEFAULT NULL COMMENT '单价',
+  `percentage` decimal(5,2) DEFAULT NULL COMMENT '提成比例',
+  `commission` decimal(5,2) DEFAULT NULL COMMENT '佣金',
+  `cutoff_time` date DEFAULT NULL COMMENT '结算时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_salesslipdetail_salesslipid` (`sales_slip_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '销售明细单表';
+
+CREATE TABLE `sys_config` (
+  `id` bigint(20) NOT NULL,
+  `code` varchar(32) DEFAULT NULL COMMENT '编码',
+  `name` varchar(32) DEFAULT NULL COMMENT '名称',
+  `value` varchar(32) DEFAULT NULL COMMENT '值',
+  `desc` varchar(255) DEFAULT NULL COMMENT '描述',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

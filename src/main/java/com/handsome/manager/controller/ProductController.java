@@ -70,5 +70,10 @@ public class ProductController {
     public ResponseEntity<ServiceResault> select() {
         return ResponseEntity.ok(productService.select());
     }
+
+    @RequestMapping(value = "/query")
+    public ResponseEntity<ServiceResault> query(String id) {
+        return ResponseEntity.ok(productService.query(id));
+    }
 }
 

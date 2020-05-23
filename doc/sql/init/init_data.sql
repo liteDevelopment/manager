@@ -13,3 +13,6 @@ INSERT INTO user (id, role_id, name, password, phone)
 VALUES (2, 2, 'sales_test', '$2a$10$PlfalHVD2vSeVTn9ou5QsOKyXGKJJTvNIIwuBuxN6CZKPcwedh5ly', '13020002000');
 INSERT INTO account (id, account, type, user_id)
 VALUES (2, '13020002000', 1, 2);
+
+INSERT INTO sys_config (`id`, `code`, `name`, `value`, `desc`)
+VALUES (1, 'percentage', '提成比例', '0.17', '公共销售提成比例');

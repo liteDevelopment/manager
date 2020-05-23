@@ -293,6 +293,7 @@ $(function () {
             $("input[name=percentage]").val(null);
             $("input[name=commission]").val(null);
             $("input[name=cutoffTime]").val(null);
+            getSysConfig($("#percentage"), 'percentage');
             createSelect($("#productSelect"), "/manager/pc/product/select");
             $("#detailEditModal").modal("show");
         });
@@ -330,6 +331,7 @@ $(function () {
                 },
                 success: function (data) {
                     if (data.code == 1) {
+                        getSysConfig($("#percentage"), 'percentage');
                         createSelect($("#productSelect"), "/manager/pc/product/select", data.data.productId);
                         $("#detailEditModal").modal("show");
                     } else {
@@ -339,6 +341,35 @@ $(function () {
             });
 
         });
+
+    $("#productSelect").change(function(){
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "/manager/pc/product/query",
+            data: {id: $("#productSelect").val()},
+            async: false,
+            error: function (request) {
+                alert("Server Connection Error.");
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    $("#price").val(data.data.price);
+                    cacl();
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+    });
+
+    $('#num').blur(function () {
+        cacl();
+    });
+
+    $('#percentage').blur(function () {
+        cacl();
+    });
 
     $("#detail-btn-submit").on("click", function () {
             $.ajax({
@@ -401,6 +432,7 @@ $(function () {
             cache: "false",
             success: function (data) {
                 if (data.code == 1 && data.data) {
+                elSelect.append("<option style='display: none'></option>");
                     for (i = 0; i < data.data.length; i++) {
                         if (id) {
                             elSelect.append("<option value='"+data.data[i].value+"' "+ (data.data[i].value==id ? "selected" : "") + ">"+data.data[i].text+"</option>");
@@ -417,4 +449,35 @@ $(function () {
             }
         });
     }
+
+    function getSysConfig(elInput, code) {
+        $.ajax({
+            cache: false,
+            type: "GET",
+            url: "/manager/pc/sysConfig/query",
+            data: {code: code},
+            async: false,
+            error: function (request) {
+                alert("Server Connection Error.");
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    elInput.val(+data.data.value);
+                } else {
+                    alert(data.msg);
+                }
+            }
+        });
+    };
+
+    function cacl() {
+        var price = $("#price").val();
+        var percentage = $("#percentage").val();
+        var num = $("#num").val();
+        if (price && percentage && num) {
+            $("#commission").val((price * percentage * num).toFixed(2));
+        } else {
+            $("#commission").val(0.00);
+        }
+    };
 });

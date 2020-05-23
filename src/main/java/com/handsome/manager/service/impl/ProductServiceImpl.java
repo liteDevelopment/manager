@@ -50,7 +50,8 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
     @Override
     public ServiceResault query(String productId) {
-        return null;
+        Product product = productMapper.selectById(productId);
+        return new ServiceResault(product);
     }
 
     @Override
