@@ -17,5 +17,5 @@ import java.util.List;
  */
 public interface SalesSlipDetailMapper extends BaseMapper<SalesSlipDetail> {
 
-    List<SalesSlipDetailAO> getSalesSlipDetails(@Param("begin") int begin, @Param("length") int length);
+    List<SalesSlipDetailAO> getSalesSlipDetails(@Param("begin") int begin, @Param("length") int length, @Param("salesSlipId") Long salesSlipId);
 }

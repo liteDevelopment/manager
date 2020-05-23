@@ -155,6 +155,11 @@ $(function () {
         });
 
     $("#btn-submit").on("click", function () {
+            //校验
+            if (!$("#code").val()) { alert("请填写编号"); return; }
+            if (!$("#userSelect").val()) { alert("请选择销售"); return; }
+            if (!$("#customerSelect").val()) { alert("请选客户"); return; }
+
             $.ajax({
                 cache: false,
                 type: "POST",
@@ -200,7 +205,8 @@ $(function () {
 
     $("#dataTable tbody").on("click", "#salesSlipSetailEdit", function () {
         var data = tables.api().row($(this).parents("tr")).data();
-        var salesSlipId = $("input[name=id]").val(data.id);
+        $("#salesSlipId").val(data.id);
+        detailTables.fnDraw();
         $("#salesSlip").attr("style","display:none;");
         $("#salesSlipDetail").attr("style","display:block;");;
     });
@@ -226,10 +232,9 @@ $(function () {
                  url: "/manager/pc/salesSlip/detail/dataGrid",
                  dataSrc: "data",
                  dataType:'json',
-                 data: {
-                     "id": null,
-                     "code": null,
-                     "createTime": null
+                 data: function (data) {
+                    data.salesSlipId = $("#salesSlipId").val();
+                    return data;
                  },
                  beforeSend: function () {
                          // 禁用按钮防止重复提交，发送前响应
@@ -257,6 +262,16 @@ $(function () {
                 {
                     targets: -1,
                     defaultContent: detailStr
+                },
+                {
+                    targets: 7,
+                    render: function (data, type, row, meta) {
+                        if (data){   // data不为空进行转换
+                            return data.substring(0,10);
+                        } else {
+                            return data = ''; //data为空时不转换
+                        }
+                    }
                 }
             ],
             language: {
@@ -288,11 +303,14 @@ $(function () {
     //添加
     $("#detail-btn-add").on("click", function () {
             $("input[name=id]").val(null);
+            $("input[name=salesSlipId]").val($("#salesSlipId").val());
             $("input[name=num]").val(null);
             $("input[name=price]").val(null);
             $("input[name=percentage]").val(null);
             $("input[name=commission]").val(null);
-            $("input[name=cutoffTime]").val(null);
+            var date_now = new Date().toLocaleDateString();
+            date_now = date_now.split('/')[0]+'-'+((date_now.split('/')[1]-'10'<0)?'0'+date_now.split('/')[1]:date_now.split('/')[1])+'-'+((date_now.split('/')[2]-'10'<0)?'0'+date_now.split('/')[2]:date_now.split('/')[2]);
+            $("input[name=cutoffTime]").val(date_now);
             getSysConfig($("#percentage"), 'percentage');
             createSelect($("#productSelect"), "/manager/pc/product/select");
             $("#detailEditModal").modal("show");
@@ -314,11 +332,14 @@ $(function () {
     $("#detailDataTable tbody").on("click", "#detailEditRow", function () {
             var data = detailTables.api().row($(this).parents("tr")).data();
             $("input[name=id]").val(data.id);
+            $("input[name=salesSlipId]").val($("#salesSlipId").val());
             $("input[name=num]").val(data.num);
             $("input[name=price]").val(data.price);
             $("input[name=percentage]").val(data.percentage);
             $("input[name=commission]").val(data.commission);
-            $("input[name=cutoffTime]").val(data.cutoffTime);
+            var date_now = new Date(data.cutoffTime).toLocaleDateString();
+            date_now = date_now.split('/')[0]+'-'+((date_now.split('/')[1]-'10'<0)?'0'+date_now.split('/')[1]:date_now.split('/')[1])+'-'+((date_now.split('/')[2]-'10'<0)?'0'+date_now.split('/')[2]:date_now.split('/')[2]);
+            $("input[name=cutoffTime]").val(date_now);
 
             $.ajax({
                 cache: false,
@@ -372,25 +393,31 @@ $(function () {
     });
 
     $("#detail-btn-submit").on("click", function () {
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "/manager/pc/salesSlip/detail/save",
-                data: $("#detailEditForm").serialize(),
-                async: false,
-                error: function (request) {
-                    alert("Server Connection Error.");
-                },
-                success: function (data) {
-                    if (data.code == 1) {
-                        $("#detailEditModal").modal("hide");
-                        detailTables.fnDraw();
-                    } else {
-                        alert(data.msg);
-                    }
+        cacl();
+        //校验
+        if (!$("#productSelect").val()) { alert("请选择课程"); return; }
+        if (!$("#num").val()) { alert("请填写次数"); return; }
+        if ('undefine' == $("#percentage").val() || '' == $("#percentage").val()) { alert("请填写提成比例"); return; }
+
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "/manager/pc/salesSlip/detail/save",
+            data: $("#detailEditForm").serialize(),
+            async: false,
+            error: function (request) {
+                alert("Server Connection Error.");
+            },
+            success: function (data) {
+                if (data.code == 1) {
+                    $("#detailEditModal").modal("hide");
+                    detailTables.fnDraw();
+                } else {
+                    alert(data.msg);
                 }
-            });
+            }
         });
+    });
 
     //删除
     $("#detailDataTable tbody").on("click", "#detailDelRow", function () {
@@ -462,7 +489,9 @@ $(function () {
             },
             success: function (data) {
                 if (data.code == 1) {
-                    elInput.val(+data.data.value);
+                    if (!elInput.val()) {
+                        elInput.val(+data.data.value);
+                    }
                 } else {
                     alert(data.msg);
                 }

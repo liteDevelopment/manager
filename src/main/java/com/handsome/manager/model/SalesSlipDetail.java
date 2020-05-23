@@ -49,7 +49,7 @@ public class SalesSlipDetail implements Serializable {
     /**
      * 结算时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:MM:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date cutoffTime;
 
     public Long getId() {

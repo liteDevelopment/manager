@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,15 +58,16 @@ public class SalesSlipServiceImpl extends ServiceImpl<SalesSlipMapper, SalesSlip
 
     @Override
     public ServiceResault add(SalesSlip salesSlip) {
+        salesSlip.setCreateTime(new Date());
         salesSlipMapper.insert(salesSlip);
         return new ServiceResault();
     }
 
     @Override
     public ServiceResault update(SalesSlip salesSlip) {
-        Wrapper<SalesSlip> productWrapper = new EntityWrapper<SalesSlip>();
-        productWrapper.eq("id", salesSlip.getId());
-        salesSlipMapper.update(salesSlip, productWrapper);
+        Wrapper<SalesSlip> salesSlipWrapper = new EntityWrapper<SalesSlip>();
+        salesSlipWrapper.eq("id", salesSlip.getId());
+        salesSlipMapper.update(salesSlip, salesSlipWrapper);
         return new ServiceResault();
     }
 

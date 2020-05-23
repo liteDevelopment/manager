@@ -17,6 +17,7 @@
     <select id="getSalesSlipDetails" resultMap="SalesSlipDetailMap">
         SELECT ssd.*, p.name as product_name from sales_slip_detail ssd
         LEFT JOIN product p on (p.id=ssd.product_id)
+        where ssd.sales_slip_id = #{salesSlipId}
         limit #{begin}, #{length}
     </select>
 

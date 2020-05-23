@@ -14,6 +14,7 @@ public class Generator {
         String packageName = "com.handsome.manager";
         boolean serviceNameStartWithI = false;//auth -> UserService, 设置成true: auth -> IUserService
         generateByTables(serviceNameStartWithI, packageName, "handsome", "noah",
+                "sys_config",
                 "user", "account", "role",
                 "product", "customer", "sales_slip", "sales_slip_detail");
 
@@ -33,8 +34,8 @@ public class Generator {
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)
-                .setUsername("mk")
-//                .setPassword("huawei")
+                .setUsername("root")
+                .setPassword("huawei")
                 .setDriverName("com.mysql.jdbc.Driver");
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig
@@ -46,7 +47,7 @@ public class Generator {
                 .setInclude(tableNames);//修改替换成你需要的表名，多个表名传数组
         config.setActiveRecord(false)
                 .setAuthor(author)
-                .setOutputDir("../codeGen")
+                .setOutputDir("/codeGen")
                 .setFileOverride(true)
                 .setEnableCache(false);
         if (!serviceNameStartWithI) {

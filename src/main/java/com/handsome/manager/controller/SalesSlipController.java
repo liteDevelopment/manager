@@ -60,7 +60,7 @@ public class SalesSlipController {
                                                  @RequestParam(value = "length") String length) {
         int rows = Integer.parseInt(length);
         int page = (Integer.parseInt(start) / rows) + 1;
-        List<SalesSlipDetailAO> users = salesSlipDetailService.list(rows, page);
+        List<SalesSlipDetailAO> users = salesSlipDetailService.list(rows, page, salesSlipDetail.getSalesSlipId());
         DatatablesResult pageResult = new DatatablesResult<SalesSlip>();
         pageResult.setData(users);
         pageResult.setDraw(draw);

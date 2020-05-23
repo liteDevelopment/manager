@@ -97,6 +97,7 @@
                 </div>
             </div>
             <div class="content" id="salesSlipDetail" style="display:none;">
+                <input hidden id="salesSlipId" />
                 <div class="pull-left">
                     <button id="btn-back" >返回</button>
                 </div>
@@ -138,39 +139,40 @@
                             <div class="modal-body">
                                 <form class="form-horizontal"  id="detailEditForm" action="" method="post">
                                     <input type="hidden" class="form-control" name="id">
+                                    <input type="hidden" class="form-control" name="salesSlipId">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label">课程</label>
+                                        <label for="productSelect" class="col-sm-3 control-label">课程</label>
                                         <select class="form-control" id="productSelect" name="productId">
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="code" class="col-sm-3 control-label">次数</label>
+                                        <label for="num" class="col-sm-3 control-label">次数</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="num" id="num">
+                                            <input type="number" class="form-control" name="num" id="num">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="code" class="col-sm-3 control-label">单价</label>
+                                        <label for="price" class="col-sm-3 control-label">单价</label>
                                         <div class="col-sm-9">
-                                            <input disabled type="text" class="form-control" name="price" id="price">
+                                            <input readonly type="number" class="form-control" name="price" id="price">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="code" class="col-sm-3 control-label">提成比例</label>
+                                        <label for="percentage" class="col-sm-3 control-label">提成比例</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="percentage" id="percentage">
+                                            <input type="number" class="form-control" name="percentage" id="percentage">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="code" class="col-sm-3 control-label">佣金</label>
+                                        <label for="commission" class="col-sm-3 control-label">佣金</label>
                                         <div class="col-sm-9">
-                                            <input disabled type="text" class="form-control" name="commission" id="commission">
+                                            <input readonly type="number" class="form-control" name="commission" id="commission">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="code" class="col-sm-3 control-label">结算时间</label>
+                                        <label for="cutoffTime" class="col-sm-3 control-label">结算时间</label>
                                         <div class="col-sm-9">
-                                            <input disabled type="text" class="form-control" name="cutoffTime" id="cutoffTime">
+                                            <input  type="date" class="form-control"  name="cutoffTime" id="cutoffTime"/>
                                         </div>
                                     </div>
                                 </form>

@@ -33,9 +33,9 @@ public class SalesSlipDetailServiceImpl extends ServiceImpl<SalesSlipDetailMappe
     private SalesSlipDetailMapper salesSlipDetailMapper;
 
     @Override
-    public List<SalesSlipDetailAO> list(int rows, int page) {
+    public List<SalesSlipDetailAO> list(int rows, int page, Long salesSlipId) {
         Page p = new Page(page, rows);
-        List<SalesSlipDetailAO> salesSlipDetails = salesSlipDetailMapper.getSalesSlipDetails(p.getOffset(), p.getSize());
+        List<SalesSlipDetailAO> salesSlipDetails = salesSlipDetailMapper.getSalesSlipDetails(p.getOffset(), p.getSize(), salesSlipId);
         return salesSlipDetails;
     }
 
@@ -53,17 +53,22 @@ public class SalesSlipDetailServiceImpl extends ServiceImpl<SalesSlipDetailMappe
 
     @Override
     public ServiceResault add(SalesSlipDetail salesSlipDetail) {
-        return null;
+        salesSlipDetailMapper.insert(salesSlipDetail);
+        return new ServiceResault();
     }
 
     @Override
     public ServiceResault update(SalesSlipDetail salesSlipDetail) {
-        return null;
+        Wrapper<SalesSlipDetail> salesSlipDetailWrapper = new EntityWrapper<SalesSlipDetail>();
+        salesSlipDetailWrapper.eq("id", salesSlipDetail.getId());
+        salesSlipDetailMapper.update(salesSlipDetail, salesSlipDetailWrapper);
+        return new ServiceResault();
     }
 
     @Override
     public ServiceResault del(String id) {
-        salesSlipDetailMapper.deleteById(id);
+        Long idl = Long.valueOf(id);
+        salesSlipDetailMapper.deleteById(idl);
         return new ServiceResault();
     }
 

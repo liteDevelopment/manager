@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2020-05-13
  */
 public interface SalesSlipDetailService extends IService<SalesSlipDetail> {
-    List<SalesSlipDetailAO> list(int rows, int page);
+    List<SalesSlipDetailAO> list(int rows, int page, Long salesSlipId);
     int count();
     ServiceResault query(String id);
     ServiceResault add(SalesSlipDetail salesSlipDetail);
