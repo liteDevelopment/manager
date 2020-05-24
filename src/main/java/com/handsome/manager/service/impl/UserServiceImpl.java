@@ -76,6 +76,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public ServiceResault add(UserAO userAO) {
+
+        Wrapper<Account> validAccountWrapper = new EntityWrapper<Account>();
+        validAccountWrapper.eq("account", userAO.getAccount());
+        Integer num = accountMapper.selectCount(validAccountWrapper);
+        if (num > 0) {
+            return new ServiceResault(0, "登录账号已被使用！");
+        }
+
         User user = new User();
         user.setName(userAO.getName());
         user.setPhone(userAO.getPhone());
@@ -94,6 +102,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public ServiceResault update(UserAO userAO) {
+
+        Wrapper<Account> validAccountWrapper = new EntityWrapper<Account>();
+        validAccountWrapper.eq("account", userAO.getAccount());
+        validAccountWrapper.ne("user_id", userAO.getId());
+        Integer num = accountMapper.selectCount(validAccountWrapper);
+        if (num > 0) {
+            return new ServiceResault(0, "登录账号已被使用！");
+        }
 
         User user = userMapper.selectById(userAO.getId());
         Wrapper<User> userWrapper = new EntityWrapper<User>();

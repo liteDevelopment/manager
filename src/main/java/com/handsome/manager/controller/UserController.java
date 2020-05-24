@@ -60,12 +60,13 @@ public class UserController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> save(UserAO user) {
+        ServiceResault sr;
         if (StringUtils.isEmpty(user.getId())) {
-            userService.add(user);
+            sr = userService.add(user);
         } else {
-            userService.update(user);
+            sr = userService.update(user);
         }
-        return ResponseEntity.ok(new ServiceResault());
+        return ResponseEntity.ok(sr);
     }
 
     @RequestMapping(value = "/select")
