@@ -47,21 +47,20 @@ public class UserController {
         DatatablesResult pageResult = new DatatablesResult<UserAO>();
         pageResult.setData(users);
         pageResult.setDraw(draw);
-        pageResult.setRecordsTotal(20);
+        pageResult.setRecordsTotal(userService.count());
         pageResult.setRecordsFiltered(pageResult.getRecordsTotal());
         return ResponseEntity.ok(pageResult);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public ResponseEntity<ServiceResault> delete(@RequestParam(value = "id") String id) {
-        //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         userService.del(id);
         return ResponseEntity.ok(new ServiceResault());
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> save(UserAO user) {
-        if (null != user.getId()) {
+        if (StringUtils.isEmpty(user.getId())) {
             userService.add(user);
         } else {
             userService.update(user);

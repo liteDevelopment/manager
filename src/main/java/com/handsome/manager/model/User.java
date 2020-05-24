@@ -18,18 +18,30 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonSerialize(using = ToStringSerializer.class)
-    private Integer id;
+    private Long id;
+    private Long roleId;
     private String name;
     private String password;
     private String phone;
+    /**
+     * 状态 1有效 0删除
+     */
+    private Boolean status;
 
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public String getName() {
@@ -56,13 +68,23 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-        ", id=" + id +
-        ", name=" + name +
-        ", password=" + password +
-        ", phone=" + phone +
-        "}";
+                ", id=" + id +
+                ", roleId=" + roleId +
+                ", name=" + name +
+                ", password=" + password +
+                ", phone=" + phone +
+                ", status=" + status +
+                "}";
     }
 }

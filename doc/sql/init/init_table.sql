@@ -2,7 +2,7 @@
 drop table `role`;
 CREATE TABLE `role`
 (
-    `id`   int(20)      NOT NULL,
+    `id`   bigint(20)      NOT NULL,
     `name` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
@@ -12,11 +12,12 @@ CREATE TABLE `role`
 drop table `user`;
 CREATE TABLE `user`
 (
-    `id`       int(20)      NOT NULL,
-    `role_id`  int(20)      NOT NULL,
+    `id`       bigint(20)      NOT NULL,
+    `role_id`  bigint(20)      NOT NULL,
     `name`     varchar(255) NOT NULL,
     `password` varchar(255) NOT NULL,
     `phone`    varchar(20)  NOT NULL,
+    `status` bit(1) NOT NULL COMMENT '状态 1有效 0删除',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -25,10 +26,10 @@ CREATE TABLE `user`
 drop table `account`;
 CREATE TABLE `account`
 (
-    `id`      int(20)     NOT NULL,
+    `id`      bigint(20)     NOT NULL,
     `account` varchar(32) NOT NULL,
     `type`    tinyint(3)  NOT NULL COMMENT '1-手机号',
-    `user_id` int(20)     NOT NULL DEFAULT 0,
+    `user_id` bigint(20)     NOT NULL DEFAULT 0,
     PRIMARY KEY (`id`),
     UNIQUE KEY uk_account (`account`)
 ) ENGINE = InnoDB

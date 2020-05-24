@@ -7,12 +7,18 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.handsome.manager.ao.SelectAO;
 import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.ao.UserAO;
+import com.handsome.manager.mapper.AccountMapper;
+import com.handsome.manager.mapper.RoleMapper;
 import com.handsome.manager.mapper.UserMapper;
+import com.handsome.manager.model.Account;
+import com.handsome.manager.model.Role;
 import com.handsome.manager.model.User;
 import com.handsome.manager.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,6 +38,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private AccountMapper accountMapper;
+
+    @Resource
+    private RoleMapper roleMapper;
 
     @Override
     public User getById(String id) {
@@ -53,7 +65,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public int count() {
         Wrapper<User> userWrapper = new EntityWrapper<User>();
-        //salesSlipWrapper.eq("status", true);
+        userWrapper.eq("status", true);
         return userMapper.selectCount(userWrapper);
     }
 
@@ -63,18 +75,52 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public ServiceResault add(UserAO user) {
-        return null;
+    public ServiceResault add(UserAO userAO) {
+        User user = new User();
+        user.setName(userAO.getName());
+        user.setPhone(userAO.getPhone());
+        user.setPassword(new BCryptPasswordEncoder().encode("123456"));//默认密码
+        user.setRoleId(2L);//1管理员 2销售 新增只能新增销售
+        user.setStatus(true);
+        userMapper.insert(user);
+
+        Account account = new Account();
+        account.setAccount(userAO.getAccount());
+        account.setType(1);
+        account.setUserId(user.getId());
+        accountMapper.insert(account);
+        return new ServiceResault();
     }
 
     @Override
-    public ServiceResault update(UserAO user) {
-        return null;
+    public ServiceResault update(UserAO userAO) {
+
+        User user = userMapper.selectById(userAO.getId());
+        Wrapper<User> userWrapper = new EntityWrapper<User>();
+        userWrapper.eq("id", user.getId());
+        User newUser = new User();
+        newUser.setName(userAO.getName());
+        newUser.setPhone(userAO.getPhone());
+        userMapper.update(newUser, userWrapper);
+
+        Wrapper<Account> accountWrapper = new EntityWrapper<Account>();
+        accountWrapper.eq("user_id", user.getId());
+        List<Account> accounts = accountMapper.selectList(accountWrapper);
+        if (!CollectionUtils.isEmpty(accounts)) {
+            Account account = accounts.get(0);
+            Account newAccount = new Account();
+            newAccount.setAccount(userAO.getAccount());
+            accountMapper.update(newAccount, accountWrapper);
+        }
+        return new ServiceResault();
     }
 
     @Override
     public ServiceResault del(String id) {
-        return null;
+        User user = userMapper.selectById(id);
+        user.setStatus(false);
+        userMapper.updateById(user);
+        return new ServiceResault();
     }
 
     @Override

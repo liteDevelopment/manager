@@ -119,7 +119,7 @@ $(function () {
             var data = tables.api().row($(this).parents("tr")).data();
             $("input[name=id]").val(data.id);
             $("input[name=name]").val(data.name);
-            $("input[name=account]").val(data.phone);
+            $("input[name=account]").val(data.account);
             $("input[name=phone]").val(data.phone);
             $("#editModal").modal("show");
         });
@@ -152,12 +152,12 @@ $(function () {
             var data = tables.api().row($(this).parents("tr")).data();
             if (confirm("是否确认删除这条信息?")) {
                 $.ajax({
-                    url: '',
+                    url: '/manager/pc/user/delete?id=' + data.id,
                     type: 'delete',
                     dataType: "json",
                     cache: "false",
                     success: function (data) {
-                        if (data.status == 1) {
+                        if (data.code == 1) {
                             tables.api().row().remove().draw(false);
                         } else {
                             alert(data.msg);
