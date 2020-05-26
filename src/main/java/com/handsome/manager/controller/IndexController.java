@@ -60,6 +60,13 @@ public class IndexController {
         return "common";
     }
 
+    @RequestMapping("/reportSaleDetails")
+    public String reportSaleDetails(Model model) {
+        model.addAttribute("contentPage", "report/reportSaleDetails");
+        model.addAttribute("jsPaths", "/js/report/reportSaleDetails.js");
+        return "common";
+    }
+
     @RequestMapping("/noPermission")
     public String permission(Model model) {
         model.addAttribute("msg", "无权限");

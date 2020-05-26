@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.handsome.manager.mapper.ReportMapper">
+    <resultMap type="com.handsome.manager.ao.ReportSaleDetailAO" id="ReportSaleDetailMap">
+        <!-- property值为实体类属性，column值为数据库表字段 -->
+        <id property="userName" column="user_name"/>
+        <result property="salesSlipCode" column="sales_slip_code"/>
+        <result property="customerName" column="customer_name"/>
+        <result property="productName" column="product_name"/>
+        <result property="commission" column="commission"/>
+        <result property="cutoffTime" column="cutoff_time"/>
+    </resultMap>
+
+    <select id="getReportSaleDetails" resultMap="ReportSaleDetailMap">
+        SELECT
+        u.name as user_name,
+        ss.`code` as sales_slip_code,
+        c.name as customer_name,
+        p.name as product_name,
+        ssd.commission,
+        ssd.cutoff_time
+        from (SELECT * from `sales_slip` ss where ss.`status`=1
+        <if test='null != userId and "" != userId'>
+            and ss.user_id = #{userId}
+        </if>
+        ) ss
+        LEFT JOIN `user` u on (u.id=ss.user_id)
+        LEFT JOIN customer c on (c.id=ss.customer_id)
+        LEFT JOIN sales_slip_detail ssd on (ssd.sales_slip_id=ss.id)
+        LEFT JOIN product p on (p.id=ssd.product_id)
+        WHERE ssd.cutoff_time &gt;= #{beginDate,jdbcType=DATE} and ssd.cutoff_time &lt;= #{endDate,jdbcType=DATE}
+        order by ssd.cutoff_time desc;
+    </select>
+</mapper>
