@@ -58,6 +58,13 @@ public class SalesSlipServiceImpl extends ServiceImpl<SalesSlipMapper, SalesSlip
 
     @Override
     public ServiceResault add(SalesSlip salesSlip) {
+        Wrapper<SalesSlip> checkWrapper = new EntityWrapper<SalesSlip>();
+        checkWrapper.eq("code", salesSlip.getCode());
+        Integer num = salesSlipMapper.selectCount(checkWrapper);
+        if (num > 0) {
+            return new ServiceResault(0, "单号重复！");
+        }
+
         salesSlip.setCreateTime(new Date());
         salesSlipMapper.insert(salesSlip);
         return new ServiceResault();
@@ -65,6 +72,14 @@ public class SalesSlipServiceImpl extends ServiceImpl<SalesSlipMapper, SalesSlip
 
     @Override
     public ServiceResault update(SalesSlip salesSlip) {
+        Wrapper<SalesSlip> checkWrapper = new EntityWrapper<SalesSlip>();
+        checkWrapper.eq("code", salesSlip.getCode());
+        checkWrapper.ne("id", salesSlip.getId());
+        Integer num = salesSlipMapper.selectCount(checkWrapper);
+        if (num > 0) {
+            return new ServiceResault(0, "单号重复！");
+        }
+
         Wrapper<SalesSlip> salesSlipWrapper = new EntityWrapper<SalesSlip>();
         salesSlipWrapper.eq("id", salesSlip.getId());
         salesSlipMapper.update(salesSlip, salesSlipWrapper);

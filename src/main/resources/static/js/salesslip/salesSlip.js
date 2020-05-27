@@ -92,7 +92,7 @@ $(function () {
     //添加
     $("#btn-add").on("click", function () {
             $("input[name=id]").val(null);
-            $("input[name=code]").val(null);
+            $("input[name=code]").val($._dateFormat('YYYYmmddHHMMSS', new Date()));
             $("input[name=createTime]").val(null);
             $._createSelect($("#userSelect"), "/manager/pc/user/select");
             $._createSelect($("#customerSelect"), "/manager/pc/customer/select");

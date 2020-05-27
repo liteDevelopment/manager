@@ -85,22 +85,24 @@ public class SalesSlipController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> save(SalesSlip salesSlip) {
+        ServiceResault sr;
         if (StringUtils.isEmpty(salesSlip.getId())) {
-            salesSlipService.add(salesSlip);
+            sr = salesSlipService.add(salesSlip);
         } else {
-            salesSlipService.update(salesSlip);
+            sr = salesSlipService.update(salesSlip);
         }
-        return ResponseEntity.ok(new ServiceResault());
+        return ResponseEntity.ok(sr);
     }
 
     @RequestMapping(value = "/detail/save", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> detailSave(SalesSlipDetail salesSlipDetail) {
+        ServiceResault sr;
         if (StringUtils.isEmpty(salesSlipDetail.getId())) {
-            salesSlipDetailService.add(salesSlipDetail);
+            sr = salesSlipDetailService.add(salesSlipDetail);
         } else {
-            salesSlipDetailService.update(salesSlipDetail);
+            sr = salesSlipDetailService.update(salesSlipDetail);
         }
-        return ResponseEntity.ok(new ServiceResault());
+        return ResponseEntity.ok(sr);
     }
 
     @RequestMapping(value = "/query", method = RequestMethod.GET)

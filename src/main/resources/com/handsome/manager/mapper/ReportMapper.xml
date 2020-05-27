@@ -29,6 +29,6 @@
         LEFT JOIN sales_slip_detail ssd on (ssd.sales_slip_id=ss.id)
         LEFT JOIN product p on (p.id=ssd.product_id)
         WHERE ssd.cutoff_time &gt;= #{beginDate,jdbcType=DATE} and ssd.cutoff_time &lt;= #{endDate,jdbcType=DATE}
-        order by p.id desc, c.id, ssd.cutoff_time desc;
+        order by ss.id desc, c.id, ssd.cutoff_time desc;
     </select>
 </mapper>
