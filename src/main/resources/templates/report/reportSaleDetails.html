@@ -6,7 +6,29 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="content">
-                报表
+                <div  style="flex: 1 1 auto;display: flex;">
+                    <div style="display: flex;margin:30;">
+                        <label class="col-sm-3 control-label">销售</label>
+                        <select class="form-control" id="userSelect" name="userId">
+                        </select>
+                    </div>
+                    <div style="display: flex;margin:30;">
+                        <label for="beginDate" class="col-sm-3 control-label">开始时间</label>
+                        <input  type="date" class="form-control"  name="beginDate" id="beginDate"/>
+                    </div>
+                    <div style="display: flex;margin:30;">
+                        <label for="endDate" class="col-sm-3 control-label">结束时间</label>
+                        <input  type="date" class="form-control"  name="endDate" id="endDate"/>
+                    </div>
+                    <div >
+                        <button type="button" class="btn btn-primary btn-sm" id="btn-query" style="height: 33px;">
+                            <i class="fa fa-search"></i> 查询
+                        </button>
+                    </div>
+                </div>
+                <div id="reportTable">
+
+                </div>
             </div>
         </div>
     </div>

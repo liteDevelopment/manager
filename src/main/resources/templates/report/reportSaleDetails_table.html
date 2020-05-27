@@ -1,0 +1,31 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<p style="text-align: center;"><strong>销售单明细</strong></p>
+<table width="95%" border="2" cellspacing="0" >
+    <tr>
+        <th width="5%" style="text-align: center;">序号</th>
+        <th width="10%" style="text-align: center;">销售人员</th>
+        <th width="20%" style="text-align: center;">销售单号</th>
+        <th width="10%" style="text-align: center;">学生姓名</th>
+        <th width="20%" style="text-align: center;">课程</th>
+        <th width="20%" style="text-align: center;">结算时间</th>
+        <th width="15%" style="text-align: center;">提成</th>
+    </tr>
+    <tr th:each="saleDetail,saleDetailStat : ${saleDetails}">
+        <td style="text-align: center;" th:text="${saleDetailStat.index+1}"></td>
+        <td th:text="${saleDetail.userName}"></td>
+        <td th:text="${saleDetail.salesSlipCode}"></td>
+        <td th:text="${saleDetail.customerName}"></td>
+        <td th:text="${saleDetail.productName}"></td>
+        <td th:text="${#dates.format(saleDetail.cutoffTime, 'yyyy-MM-dd')}"></td>
+        <td th:text="${saleDetail.commission}"></td>
+    </tr>
+    <!--<tr>
+        <td rowspan="3" align="middle">sssssssssss</td>  &lt;!&ndash;跨三行 rowspan="4" rowspan="n+1"&ndash;&gt;
+    </tr>-->
+    <tr>
+        <td colspan="6" align="middle">合计</td>
+        <td colspan="1" align="middle" th:text="${totalCommission}"></td>
+    </tr>
+</table>
+</html>
