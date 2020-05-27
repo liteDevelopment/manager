@@ -94,8 +94,8 @@ $(function () {
             $("input[name=id]").val(null);
             $("input[name=code]").val(null);
             $("input[name=createTime]").val(null);
-            createSelect($("#userSelect"), "/manager/pc/user/select");
-            createSelect($("#customerSelect"), "/manager/pc/customer/select");
+            $._createSelect($("#userSelect"), "/manager/pc/user/select");
+            $._createSelect($("#customerSelect"), "/manager/pc/customer/select");
             $("#editModal").modal("show");
         });
 
@@ -143,8 +143,8 @@ $(function () {
                 },
                 success: function (data) {
                     if (data.code == 1) {
-                        createSelect($("#userSelect"), "/manager/pc/user/select", data.data.userId);
-                        createSelect($("#customerSelect"), "/manager/pc/customer/select", data.data.customerId)
+                        $._createSelect($("#userSelect"), "/manager/pc/user/select", data.data.userId);
+                        $._createSelect($("#customerSelect"), "/manager/pc/customer/select", data.data.customerId)
                         $("#editModal").modal("show");
                     } else {
                         alert(data.msg);
@@ -317,7 +317,7 @@ $(function () {
             date_now = date_now.split('/')[0]+'-'+((date_now.split('/')[1]-'10'<0)?'0'+date_now.split('/')[1]:date_now.split('/')[1])+'-'+((date_now.split('/')[2]-'10'<0)?'0'+date_now.split('/')[2]:date_now.split('/')[2]);
             $("input[name=cutoffTime]").val(date_now);
             getSysConfig($("#percentage"), 'percentage');
-            createSelect($("#productSelect"), "/manager/pc/product/select");
+            $._createSelect($("#productSelect"), "/manager/pc/product/select");
             $("#detailEditModal").modal("show");
         });
 
@@ -358,7 +358,7 @@ $(function () {
                 success: function (data) {
                     if (data.code == 1) {
                         getSysConfig($("#percentage"), 'percentage');
-                        createSelect($("#productSelect"), "/manager/pc/product/select", data.data.productId);
+                        $._createSelect($("#productSelect"), "/manager/pc/product/select", data.data.productId);
                         $("#detailEditModal").modal("show");
                     } else {
                         alert(data.msg);
@@ -454,33 +454,6 @@ $(function () {
 
 
 ////////////////////////////////////////////////////公共方法/////////////////////////////////////////////////////
-
-    function createSelect(elSelect, url, id) {
-        elSelect.empty();
-        $.ajax({
-            url: url,
-            type: 'get',
-            dataType: "json",
-            cache: "false",
-            success: function (data) {
-                if (data.code == 1 && data.data) {
-                elSelect.append("<option style='display: none'></option>");
-                    for (i = 0; i < data.data.length; i++) {
-                        if (id) {
-                            elSelect.append("<option value='"+data.data[i].value+"' "+ (data.data[i].value==id ? "selected" : "") + ">"+data.data[i].text+"</option>");
-                        } else {
-                            elSelect.append("<option value='"+data.data[i].value+"'>"+data.data[i].text+"</option>");
-                        }
-                    }
-                } else {
-                    alert(data.msg);
-                }
-            },
-            error: function (err) {
-                alert("Server Connection Error.");
-            }
-        });
-    }
 
     function getSysConfig(elInput, code) {
         $.ajax({

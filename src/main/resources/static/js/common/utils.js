@@ -17,5 +17,31 @@ $.extend({
               };
           };
           return fmt;
+    },
+    _createSelect: function(elSelect, url, id) {
+        elSelect.empty();
+        $.ajax({
+            url: url,
+            type: 'get',
+            dataType: "json",
+            cache: "false",
+            success: function (data) {
+                if (data.code == 1 && data.data) {
+                elSelect.append("<option style='display: none'></option>");
+                    for (i = 0; i < data.data.length; i++) {
+                        if (id) {
+                            elSelect.append("<option value='"+data.data[i].value+"' "+ (data.data[i].value==id ? "selected" : "") + ">"+data.data[i].text+"</option>");
+                        } else {
+                            elSelect.append("<option value='"+data.data[i].value+"'>"+data.data[i].text+"</option>");
+                        }
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (err) {
+                alert("Server Connection Error.");
+            }
+        });
     }
 })
