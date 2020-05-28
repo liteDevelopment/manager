@@ -16,4 +16,7 @@ public interface SysConfigService extends IService<SysConfig> {
 
     ServiceResault getSysConfigByCode(String code);
 
+    ServiceResault getList();
+
+    ServiceResault update(SysConfig sysConfig);
 }

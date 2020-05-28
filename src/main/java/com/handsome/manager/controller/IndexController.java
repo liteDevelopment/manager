@@ -2,6 +2,7 @@ package com.handsome.manager.controller;
 
 import com.handsome.manager.ao.ServiceResault;
 import com.handsome.manager.ao.UserAO;
+import com.handsome.manager.service.SysConfigService;
 import com.handsome.manager.system.AuthHeaper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +20,24 @@ import java.util.List;
 @RequestMapping("/pc")
 public class IndexController {
 
+    @Resource
+    private SysConfigService sysConfigService;
+
     @RequestMapping("/index")
     public String index(Model model) {
         // 获取用户信息
         model.addAttribute("userName", AuthHeaper.getUserAO().getName());
         model.addAttribute("contentPage", "index");
         model.addAttribute("jsPaths", new ArrayList<String>());
+        model.addAttribute("authList", AuthHeaper.getAuthList());
+        return "common";
+    }
+
+    @RequestMapping("/sysConfig")
+    public String sysConfig(Model model) {
+        model.addAttribute("contentPage", "config/sysConfig");
+        model.addAttribute("jsPaths", "/js/config/sysConfig.js");
+        model.addAttribute("sysConfigs", sysConfigService.getList().getData());
         model.addAttribute("authList", AuthHeaper.getAuthList());
         return "common";
     }

@@ -2,6 +2,7 @@ package com.handsome.manager.controller;
 
 
 import com.handsome.manager.ao.ServiceResault;
+import com.handsome.manager.model.SysConfig;
 import com.handsome.manager.service.SysConfigService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,13 @@ public class SysConfigController {
     private SysConfigService sysConfigService;
 
     @RequestMapping(value = "/query")
-    public ResponseEntity<ServiceResault> query(String id) {
-        return ResponseEntity.ok(sysConfigService.getSysConfigByCode(id));
+    public ResponseEntity<ServiceResault> query(String code) {
+        return ResponseEntity.ok(sysConfigService.getSysConfigByCode(code));
+    }
+
+    @RequestMapping(value = "/update")
+    public ResponseEntity<ServiceResault> update(SysConfig sysConfig) {
+        return ResponseEntity.ok(sysConfigService.update(sysConfig));
     }
 }
 

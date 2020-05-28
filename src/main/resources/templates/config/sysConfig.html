@@ -1,0 +1,29 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<!-- Content Wrapper. Contains page content -->
+<div th:fragment="pagination">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="content">
+                <table width="95%">
+                    <thead>
+                        <tr>
+                            <th width="30%">配置名称</th>
+                            <th width="20%">值</th>
+                            <th width="50%">描述</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="sysConfig,sysConfigStat : ${sysConfigs}">
+                            <td th:text="${sysConfig.name}"></td>
+                            <td class="value" th:data-id="${sysConfig.id}" th:data-code="${sysConfig.code}" th:text="${sysConfig.value}"></td>
+                            <td th:text="${sysConfig.desc}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

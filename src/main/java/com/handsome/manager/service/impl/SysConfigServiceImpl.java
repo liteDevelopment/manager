@@ -30,8 +30,23 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig
     @Override
     public ServiceResault getSysConfigByCode(String code) {
         Wrapper<SysConfig> sysConfigWrapper = new EntityWrapper<SysConfig>();
-        sysConfigWrapper.eq("code", "percentage");
+        sysConfigWrapper.eq("code", code);
         List<SysConfig> salesSlips = sysConfigMapper.selectList(sysConfigWrapper);
         return new ServiceResault(CollectionUtils.isEmpty(salesSlips) ? null : salesSlips.get(0));
+    }
+
+    @Override
+    public ServiceResault getList() {
+        Wrapper<SysConfig> sysConfigWrapper = new EntityWrapper<SysConfig>();
+        List<SysConfig> salesSlips = sysConfigMapper.selectList(sysConfigWrapper);
+        return new ServiceResault(salesSlips);
+    }
+
+    @Override
+    public ServiceResault update(SysConfig sysConfig) {
+        Wrapper<SysConfig> sysConfigWrapper = new EntityWrapper<SysConfig>();
+        sysConfigWrapper.eq("id", sysConfig.getId());
+        sysConfigMapper.update(sysConfig, sysConfigWrapper);
+        return new ServiceResault();
     }
 }
