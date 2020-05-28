@@ -1,5 +1,6 @@
 package com.handsome.manager.system;
 
+import com.handsome.manager.ao.CurrentUser;
 import com.handsome.manager.ao.UserAO;
 import com.handsome.manager.ao.UserAccountAO;
 import com.handsome.manager.model.Role;
@@ -49,11 +50,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority(role.getName()));
 
         // 返回UserDetails实现类
-        UserAO userAO = new UserAO(userAccountData.getName(), userAccountData.getPassword(), authorities);
-        userAO.setId(userAccountData.getUserId());
-        userAO.setName(userAccountData.getName());
-        userAO.setAccount(userAccountData.getAccount());
-        userAO.setPhone(user.getPhone());
-        return userAO;
+        CurrentUser currentUser = new CurrentUser(userAccountData.getName(), userAccountData.getPassword(), authorities);
+        currentUser.setId(userAccountData.getUserId());
+        currentUser.setName(userAccountData.getName());
+        currentUser.setAccount(userAccountData.getAccount());
+        currentUser.setPhone(user.getPhone());
+        return currentUser;
     }
 }

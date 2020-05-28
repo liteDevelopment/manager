@@ -1,5 +1,6 @@
 package com.handsome.manager.system;
 
+import com.handsome.manager.ao.CurrentUser;
 import com.handsome.manager.ao.UserAO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,8 +24,8 @@ public class AuthHeaper {
         }
     }
 
-    public static UserAO getUserAO() {
-        UserAO myUserDetails = (UserAO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public static CurrentUser getCurrentUser() {
+        CurrentUser myUserDetails = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return myUserDetails;
     }
 }

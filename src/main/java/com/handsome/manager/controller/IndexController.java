@@ -1,12 +1,9 @@
 package com.handsome.manager.controller;
 
 import com.handsome.manager.ao.ServiceResault;
-import com.handsome.manager.ao.UserAO;
 import com.handsome.manager.service.SysConfigService;
 import com.handsome.manager.system.AuthHeaper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +23,7 @@ public class IndexController {
     @RequestMapping("/index")
     public String index(Model model) {
         // 获取用户信息
-        model.addAttribute("userName", AuthHeaper.getUserAO().getName());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         model.addAttribute("contentPage", "index");
         model.addAttribute("jsPaths", new ArrayList<String>());
         model.addAttribute("authList", AuthHeaper.getAuthList());
@@ -88,7 +85,7 @@ public class IndexController {
         model.addAttribute("contentPage", "report/reportSaleDetails");
         model.addAttribute("jsPaths", "/js/report/reportSaleDetails.js");
         model.addAttribute("authList", AuthHeaper.getAuthList());
-        model.addAttribute("userId", AuthHeaper.getUserAO().getId());
+        model.addAttribute("userId", AuthHeaper.getCurrentUser().getId());
         return "common";
     }
 
