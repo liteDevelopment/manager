@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2020-05-02
  */
 public interface UserService extends IService<User> {
-    User getById(String id);
+    User getById(Long id);
 
     User selectByName(String name);
 

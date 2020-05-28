@@ -1,6 +1,8 @@
 $(function () {
 
-    $._createSelect($("#userSelect"), "/manager/pc/user/select");
+    if ($("select#userSelect").length) {
+        $._createSelect($("#userSelect"), "/manager/pc/user/select");
+    };
 
     $("#btn-query").on("click", function () {
         var userId = $("#userSelect").val() ? $("#userSelect").val() : null;

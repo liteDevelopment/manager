@@ -1,7 +1,9 @@
 package com.handsome.manager.system;
 
+import com.handsome.manager.ao.UserAO;
 import com.handsome.manager.ao.UserAccountAO;
 import com.handsome.manager.model.Role;
+import com.handsome.manager.model.User;
 import com.handsome.manager.service.AccountService;
 import com.handsome.manager.service.RoleService;
 import com.handsome.manager.service.UserService;
@@ -41,12 +43,17 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (null == userAccountData || null == userAccountData.getUserId()) {
             throw new UsernameNotFoundException("用户不存在");
         }
-
+        User user = userService.getById(userAccountData.getUserId());
         // 添加权限
         Role role = roleService.selectById(userAccountData.getRoleId());
         authorities.add(new SimpleGrantedAuthority(role.getName()));
 
         // 返回UserDetails实现类
-        return new org.springframework.security.core.userdetails.User(userAccountData.getName(), userAccountData.getPassword(), authorities);
+        UserAO userAO = new UserAO(userAccountData.getName(), userAccountData.getPassword(), authorities);
+        userAO.setId(userAccountData.getUserId());
+        userAO.setName(userAccountData.getName());
+        userAO.setAccount(userAccountData.getAccount());
+        userAO.setPhone(user.getPhone());
+        return userAO;
     }
 }

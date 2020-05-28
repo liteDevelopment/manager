@@ -33,7 +33,7 @@ public class TestController {
         test.setAge(27);
         test.setAddress("北京");
         List<User> users = userService.selectList(null);
-        User user = userService.getById(id);
+        User user = userService.getById(Long.valueOf(id));
         return user;
     }
 

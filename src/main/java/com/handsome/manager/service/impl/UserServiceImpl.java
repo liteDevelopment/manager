@@ -46,7 +46,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private RoleMapper roleMapper;
 
     @Override
-    public User getById(String id) {
+    public User getById(Long id) {
         return userMapper.selectById(id);
     }
 

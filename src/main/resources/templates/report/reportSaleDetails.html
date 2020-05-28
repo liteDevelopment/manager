@@ -7,10 +7,13 @@
         <div class="container-fluid">
             <div class="content">
                 <div  style="flex: 1 1 auto;display: flex;">
-                    <div style="display: flex;margin:30;">
-                        <label class="col-sm-3 control-label">销售</label>
-                        <select class="form-control" id="userSelect" name="userId">
-                        </select>
+                    <div th:switch="${authList?.contains('ROLE_ADMIN')}" style="display: flex;margin:30;">
+                        <div th:case="true" style="flex: 1 1 auto;display: flex;">
+                            <label class="col-sm-3 control-label">销售</label>
+                            <select class="form-control" id="userSelect" name="userId">
+                            </select>
+                        </div>
+                        <input hidden th:case="false" id="userSelect" th:value="${userId}"/>
                     </div>
                     <div style="display: flex;margin:30;">
                         <label for="beginDate" class="col-sm-3 control-label">开始时间</label>
