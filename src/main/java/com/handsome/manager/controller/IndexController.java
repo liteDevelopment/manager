@@ -23,10 +23,10 @@ public class IndexController {
     @RequestMapping("/index")
     public String index(Model model) {
         // 获取用户信息
-        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         model.addAttribute("contentPage", "index");
         model.addAttribute("jsPaths", new ArrayList<String>());
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -36,6 +36,7 @@ public class IndexController {
         model.addAttribute("jsPaths", "/js/config/sysConfig.js");
         model.addAttribute("sysConfigs", sysConfigService.getList().getData());
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -44,6 +45,7 @@ public class IndexController {
         model.addAttribute("contentPage", "user/userManage");
         model.addAttribute("jsPaths", "/js/user/userManage.js");
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -52,6 +54,7 @@ public class IndexController {
         model.addAttribute("contentPage", "user/userInfo");
         model.addAttribute("jsPaths", new ArrayList<String>());
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -60,6 +63,7 @@ public class IndexController {
         model.addAttribute("contentPage", "customer/customerManage");
         model.addAttribute("jsPaths", "/js/customer/customerManage.js");
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -69,6 +73,7 @@ public class IndexController {
         model.addAttribute("contentPage", "product/productManage");
         model.addAttribute("jsPaths", "/js/product/productManage.js");
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -77,6 +82,7 @@ public class IndexController {
         model.addAttribute("contentPage", "salesslip/salesSlip");
         model.addAttribute("jsPaths", "/js/salesslip/salesSlip.js");
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -86,6 +92,7 @@ public class IndexController {
         model.addAttribute("jsPaths", "/js/report/reportSaleDetails.js");
         model.addAttribute("authList", AuthHeaper.getAuthList());
         model.addAttribute("userId", AuthHeaper.getCurrentUser().getId());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
@@ -95,6 +102,7 @@ public class IndexController {
         model.addAttribute("contentPage", "error");
         model.addAttribute("jsPaths", new ArrayList<String>());
         model.addAttribute("authList", AuthHeaper.getAuthList());
+        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
         return "common";
     }
 
