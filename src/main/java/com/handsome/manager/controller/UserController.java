@@ -7,6 +7,7 @@ import com.handsome.manager.ao.TestAO;
 import com.handsome.manager.ao.UserAO;
 import com.handsome.manager.model.User;
 import com.handsome.manager.service.UserService;
+import com.handsome.manager.system.AuthHeaper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -72,6 +73,12 @@ public class UserController {
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     public ResponseEntity<ServiceResault> updateUserInfo(UserAO user) {
         ServiceResault sr = userService.update(user);
+        return ResponseEntity.ok(sr);
+    }
+
+    @RequestMapping(value = "/changePasswd", method = RequestMethod.POST)
+    public ResponseEntity<ServiceResault> changePasswd(String oldPass, String newPass) {
+        ServiceResault sr = userService.changePasswd(AuthHeaper.getCurrentUser().getId(), oldPass, newPass);
         return ResponseEntity.ok(sr);
     }
 

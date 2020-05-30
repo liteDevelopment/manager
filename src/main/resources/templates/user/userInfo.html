@@ -20,14 +20,53 @@
                     密码：<input type="password" id="passwd" />
                 </div>-->
                 <br/>
-                <div>
+                <div style="display:inline-block;">
                     <button style="display:block;" id="modify">编辑</button>
+                </div>
+                <div style="display:inline-block;">
+                    <button id="change-passwd">修改密码</button>
                 </div>
                 <div style="display:inline-block;">
                     <button style="display:none;" id="modify-submit">提交修改</button>
                 </div>
                 <div style="display:inline-block;">
-                    <button style="display:none;" id="cancel-submit">取消修改</button>
+                    <button style="display:none;" id="cancel">取消修改</button>
+                </div>
+                <br/>
+
+            </div>
+
+            <div class="modal fade in" id="changePasswdModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" >
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only"></span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <form class="form-horizontal"  id="passwdEditForm" action="" method="post">
+                                <div class="form-group">
+                                    <label for="oldPass" class="col-sm-3 control-label">原密码</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="oldPass" id="oldPass">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPass" class="col-sm-3 control-label">新密码</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="newPass" id="newPass">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" id="passwd-btn-submit" class="btn btn-primary">确认</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -141,6 +141,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public ServiceResault changePasswd(Long userId, String oldPass, String newPass) {
+        User user = userMapper.selectById(userId);
+        BCryptPasswordEncoder epe = new BCryptPasswordEncoder();
+        if (!epe.matches(oldPass, user.getPassword())) {
+            return new ServiceResault(0,"原密码不正确！");
+        }
+        String passswd = epe.encode(newPass);
+        user.setPassword(passswd);
+        userMapper.updateById(user);
+        return new ServiceResault();
+    }
+
+    @Override
     public ServiceResault select() {
         List<SelectAO> select = userMapper.select();
         return new ServiceResault(select);

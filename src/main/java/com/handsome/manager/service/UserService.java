@@ -26,6 +26,6 @@ public interface UserService extends IService<User> {
     ServiceResault add(UserAO user);
     ServiceResault update(UserAO user);
     ServiceResault del(String id);
-
+    ServiceResault changePasswd(Long userId, String oldPass, String newPass);
     ServiceResault select();
 }
