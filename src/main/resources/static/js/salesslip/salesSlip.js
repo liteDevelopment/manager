@@ -449,7 +449,7 @@ $(function () {
 
     $("#salesSlipDetail").on("click", "#btn-back", function () {
         $("#salesSlipDetail").attr("style","display:none;");
-        $("#salesSlip").attr("style","display:block;");;
+        $("#salesSlip").attr("style","display:block;");
     });
 
 

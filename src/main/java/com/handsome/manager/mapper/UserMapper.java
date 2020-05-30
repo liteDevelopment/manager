@@ -26,4 +26,6 @@ public interface UserMapper extends BaseMapper<User> {
     List<SelectAO> select();
 
     List<UserAO> getUsers(@Param("begin") int begin, @Param("length") int length);
+
+    UserAO getUserById(@Param("userId") Long userId);
 }

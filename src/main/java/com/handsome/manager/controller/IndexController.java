@@ -1,7 +1,10 @@
 package com.handsome.manager.controller;
 
+import com.handsome.manager.ao.CurrentUser;
 import com.handsome.manager.ao.ServiceResault;
+import com.handsome.manager.ao.UserAO;
 import com.handsome.manager.service.SysConfigService;
+import com.handsome.manager.service.UserService;
 import com.handsome.manager.system.AuthHeaper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,9 @@ public class IndexController {
 
     @Resource
     private SysConfigService sysConfigService;
+
+    @Resource
+    private UserService userService;
 
     @RequestMapping("/index")
     public String index(Model model) {
@@ -52,9 +58,12 @@ public class IndexController {
     @RequestMapping("/userInfo")
     public String userInfo(Model model) {
         model.addAttribute("contentPage", "user/userInfo");
-        model.addAttribute("jsPaths", new ArrayList<String>());
+        model.addAttribute("jsPaths", "/js/user/userInfo.js");
         model.addAttribute("authList", AuthHeaper.getAuthList());
-        model.addAttribute("userName", AuthHeaper.getCurrentUser().getName());
+        CurrentUser currentUser = AuthHeaper.getCurrentUser();
+        model.addAttribute("userName", currentUser.getName());
+        UserAO userAO = (UserAO) userService.query(currentUser.getId()).getData();
+        model.addAttribute("user", userAO);
         return "common";
     }
 

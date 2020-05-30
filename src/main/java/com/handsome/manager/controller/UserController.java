@@ -69,6 +69,12 @@ public class UserController {
         return ResponseEntity.ok(sr);
     }
 
+    @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+    public ResponseEntity<ServiceResault> updateUserInfo(UserAO user) {
+        ServiceResault sr = userService.update(user);
+        return ResponseEntity.ok(sr);
+    }
+
     @RequestMapping(value = "/select")
     public ResponseEntity<ServiceResault> select() {
         return ResponseEntity.ok(userService.select());

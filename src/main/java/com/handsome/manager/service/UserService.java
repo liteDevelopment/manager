@@ -22,7 +22,7 @@ public interface UserService extends IService<User> {
 
     List<UserAO> list(int rows, int page);
     int count();
-    ServiceResault query(String id);
+    ServiceResault query(Long id);
     ServiceResault add(UserAO user);
     ServiceResault update(UserAO user);
     ServiceResault del(String id);

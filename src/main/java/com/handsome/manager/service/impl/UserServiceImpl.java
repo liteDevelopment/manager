@@ -70,8 +70,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public ServiceResault query(String id) {
-        return null;
+    public ServiceResault query(Long id) {
+        UserAO user = userMapper.getUserById(id);
+        return new ServiceResault(user);
     }
 
     @Override
@@ -128,7 +129,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             newAccount.setAccount(userAO.getAccount());
             accountMapper.update(newAccount, accountWrapper);
         }
-        return new ServiceResault();
+        return new ServiceResault(userMapper.getUserById(userAO.getId()));
     }
 
     @Override

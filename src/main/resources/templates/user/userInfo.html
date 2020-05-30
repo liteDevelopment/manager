@@ -5,7 +5,31 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            用户信息
+            <input hidden id="id" th:value="${user.id}"/>
+            <div >
+                <div>
+                    姓名：<input readonly type="text" id="name" th:value="${user.name}" />
+                </div>
+                <div>
+                    电话：<input readonly type="tel" id="phone" th:value="${user.phone}"/>
+                </div>
+                <div>
+                    账号：<input readonly type="text" id="account" th:value="${user.account}"/>
+                </div>
+               <!-- <div>
+                    密码：<input type="password" id="passwd" />
+                </div>-->
+                <br/>
+                <div>
+                    <button style="display:block;" id="modify">编辑</button>
+                </div>
+                <div style="display:inline-block;">
+                    <button style="display:none;" id="modify-submit">提交修改</button>
+                </div>
+                <div style="display:inline-block;">
+                    <button style="display:none;" id="cancel-submit">取消修改</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
