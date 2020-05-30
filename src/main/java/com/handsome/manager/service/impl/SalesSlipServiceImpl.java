@@ -34,19 +34,20 @@ public class SalesSlipServiceImpl extends ServiceImpl<SalesSlipMapper, SalesSlip
     private SalesSlipMapper salesSlipMapper;
 
     @Override
-    public List<SalesSlipAO> list(int rows, int page) {
+    public List<SalesSlipAO> list(int rows, int page, SalesSlip query) {
         Page p = new Page(page, rows);
 //        Wrapper<SalesSlip> salesSlipWrapper = new EntityWrapper<SalesSlip>();
 //        salesSlipWrapper.eq("status", true);
 //        List<SalesSlip> salesSlips = salesSlipMapper.selectPage(p, salesSlipWrapper);
-        List<SalesSlipAO> salesSlips = salesSlipMapper.getSalesSlips(p.getOffset(), p.getSize());
+        List<SalesSlipAO> salesSlips = salesSlipMapper.getSalesSlips(p.getOffset(), p.getSize(), null == query ? null : query.getUserId());
         return salesSlips;
     }
 
     @Override
-    public int count() {
+    public int count(SalesSlip query) {
         Wrapper<SalesSlip> salesSlipWrapper = new EntityWrapper<SalesSlip>();
         salesSlipWrapper.eq("status", true);
+        salesSlipWrapper.eq("user_id", query.getUserId());
         return salesSlipMapper.selectCount(salesSlipWrapper);
     }
 

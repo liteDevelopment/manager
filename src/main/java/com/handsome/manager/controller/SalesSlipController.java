@@ -44,11 +44,11 @@ public class SalesSlipController {
                                                  @RequestParam(value = "length") String length) {
         int rows = Integer.parseInt(length);
         int page = (Integer.parseInt(start) / rows) + 1;
-        List<SalesSlipAO> users = salesSlipService.list(rows, page);
+        List<SalesSlipAO> users = salesSlipService.list(rows, page, salesSlip);
         DatatablesResult pageResult = new DatatablesResult<SalesSlip>();
         pageResult.setData(users);
         pageResult.setDraw(draw);
-        pageResult.setRecordsTotal(salesSlipService.count());
+        pageResult.setRecordsTotal(salesSlipService.count(salesSlip));
         pageResult.setRecordsFiltered(pageResult.getRecordsTotal());
         return ResponseEntity.ok(pageResult);
     }

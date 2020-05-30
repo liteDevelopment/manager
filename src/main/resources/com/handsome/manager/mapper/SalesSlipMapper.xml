@@ -17,6 +17,9 @@
     <select id="getSalesSlips" resultMap="SalesSlipMap">
         select ss.*, u.name as user_name, c.name as customer_name from (
         select * from sales_slip where status=1
+        <if test="null != userId" >
+            and user_id=#{userId}
+        </if>
         ) ss
         left join user u on (u.id=ss.user_id)
         left join customer c on (c.id=ss.customer_id)

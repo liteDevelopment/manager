@@ -7,6 +7,9 @@ $(function () {
          "<button id='delRow' class='btn btn-primary btn-sm' type='button'><i class='fa'></i>删除</button>" +
          "<button id='salesSlipSetailEdit' class='btn btn-primary btn-sm' type='button'><i class='fa'></i>明细</button>" +
          "</div>"
+
+    $._createSelect($("#salesSelect"), "/manager/pc/user/select");
+
     var tables = $("#dataTable").dataTable({
             serverSide: true,//分页，取数据等等的都放到服务端去
             //processing: true,//载入数据的时候是否显示“载入中”
@@ -21,11 +24,15 @@ $(function () {
                  url: "/manager/pc/salesSlip/dataGrid",
                  dataSrc: "data",
                  dataType:'json',
-                 data: {
+                 data: function (data) {
+                     data.userId = ("" == $("#salesSelect").val() ? null : $("#salesSelect").val());
+                     return data;
+                 },
+                 /*{
                      "id": null,
                      "code": null,
                      "createTime": null
-                 },
+                 },*/
                  beforeSend: function () {
                          // 禁用按钮防止重复提交，发送前响应
                          //$("#submit").attr({ disabled: "disabled" });
@@ -84,10 +91,10 @@ $(function () {
             }
         });
 
-/*    //查询按钮
+    //查询按钮
     $("#btn-query").on("click", function () {
         tables.fnDraw();//查询后不需要保持分页状态，回首页
-    });*/
+    });
 
     //添加
     $("#btn-add").on("click", function () {

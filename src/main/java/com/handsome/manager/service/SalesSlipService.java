@@ -18,8 +18,8 @@ import java.util.List;
  * @since 2020-05-13
  */
 public interface SalesSlipService extends IService<SalesSlip> {
-    List<SalesSlipAO> list(int rows, int page);
-    int count();
+    List<SalesSlipAO> list(int rows, int page, SalesSlip query);
+    int count(SalesSlip query);
     ServiceResault query(String id);
     ServiceResault add(SalesSlip salesSlip);
     ServiceResault update(SalesSlip salesSlip);
