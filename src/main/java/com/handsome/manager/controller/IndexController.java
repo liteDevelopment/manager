@@ -63,7 +63,7 @@ public class IndexController {
         CurrentUser currentUser = AuthHeaper.getCurrentUser();
         model.addAttribute("userName", currentUser.getName());
         UserAO userAO = (UserAO) userService.query(currentUser.getId()).getData();
-        model.addAttribute("user", userAO);
+        model.addAttribute("userAO", userAO);
         return "common";
     }
 

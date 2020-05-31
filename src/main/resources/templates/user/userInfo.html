@@ -5,16 +5,16 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <input hidden id="id" th:value="${user.id}"/>
+            <input hidden id="id" th:value="${userAO.id}"/>
             <div >
                 <div>
-                    姓名：<input readonly type="text" id="name" th:value="${user.name}" />
+                    姓名：<input readonly type="text" id="name" th:value="${userAO.name}" />
                 </div>
                 <div>
-                    电话：<input readonly type="tel" id="phone" th:value="${user.phone}"/>
+                    电话：<input readonly type="tel" id="phone" th:value="${userAO.phone}"/>
                 </div>
                 <div>
-                    账号：<input readonly type="text" id="account" th:value="${user.account}"/>
+                    账号：<input readonly type="text" id="account" th:value="${userAO.account}"/>
                 </div>
                <!-- <div>
                     密码：<input type="password" id="passwd" />
